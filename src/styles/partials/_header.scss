@@ -1,0 +1,25 @@
+@use './variables' as *;
+
+header {
+  position: relative;
+  font-family: $header-font;
+  color: black;
+  font-weight: bold;
+  background-color: rgba($light-green, 0.5);
+  height: 20vh;
+  text-align: center;
+
+  &::before {
+    position: absolute;
+    content: '';
+    background: url('../../assets/luke-stackpoole-ZRsJmpt9pNI-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}

@@ -8,13 +8,11 @@ import Form from './components/Form';
 function App() {
   return (
     <div className='App'>
-      <header>
         <Header />
         <Form />
         <Map />
         <Results />
         <Footer />
-      </header>
     </div>
   );
 }
