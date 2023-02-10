@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <p>Created at Juno College 2023 by Graydon, John and Michael.</p>
       <a
-        class='code_link'
+        className='code_link'
         href='https://github.com/Maktastix/portfolio_website.git'
         target='_blank'
         rel='noreferrer'
