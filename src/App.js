@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import './styles/App.scss';
 import Map from './components/Map';
 import Header from './components/Header';
@@ -6,13 +7,24 @@ import Results from './components/Results';
 import Form from './components/Form';
 
 function App() {
+  const [results, setResults] = useState([]);
+  const [userQuery, setUserQuery] = useState('sushi');
+  const [userCoordinates, setUserCoordinates] = useState([43.65107, -79.347015]);
   return (
     <div className='App'>
-        <Header />
-        <Form />
-        <Map />
-        <Results />
-        <Footer />
+      <Header />
+      <Form
+        setUserQuery={setUserQuery}
+        setUserCoordinates={setUserCoordinates}
+      />
+      <Map
+        results={results}
+        setResults={setResults}
+        userCoordinates={userCoordinates}
+        userQuery={userQuery}
+      />
+      <Results />
+      <Footer />
     </div>
   );
 }
