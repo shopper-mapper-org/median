@@ -1,0 +1,23 @@
+// Typography SASS Partial
+
+@use 'variables' as *;
+
+html{
+    font-size: 125%;
+}
+
+body{
+    font-family: $body-font;
+    color: $white;
+}
+
+h1,
+h2,
+h3,
+h4{
+    font-family: $header-font;
+}
+
+input{
+    font-size: 1.3rem;
+}

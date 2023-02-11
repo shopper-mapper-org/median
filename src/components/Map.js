@@ -12,7 +12,7 @@ const Map = () => {
   return (
     <div className='map-view'>
       <div className='container'>
-        <h1>Map</h1>
+        <h2>Map</h2>
         <MapContainer
           center={coords}
           zoom={13}

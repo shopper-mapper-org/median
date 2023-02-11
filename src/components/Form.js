@@ -45,18 +45,32 @@ const Form = () => {
 
   return (
     <>
-      <section className="form-container container">
-        <form onSubmit={handleSubmit}>
-          <div className="current-location-container">
-            <label htmlFor="location"></label>
-            <input type="text" id="location" placeholder="Enter location" value={locationInput} onChange={handleLocInput} required>
+      <section className="container">
+        {/* Placeholder, change to desired text */}
+        <form className="form-container" onSubmit={handleSubmit}>
+          <div className="location-container">
+            <label htmlFor="location">Enter your Location or Starting Point</label>
+            <input 
+              type="text" 
+              id="location" 
+              placeholder="Enter Location" 
+              value={locationInput} 
+              onChange={handleLocInput} 
+              required>
             </input>
           </div>
-          <div className="user-query-container">
-            <label htmlFor="query"></label>
-            <input type="text" id="query" placeholder="Enter Attraction" value={queryInput} onChange={handleQueryInput} required></input>
+          <div className="query-container">
+            <label htmlFor="query">Try Searching for an Attraction (e.g Museum, Restaurant, etc..)</label>
+            <input 
+              type="text" 
+              id="query" 
+              placeholder="Enter Attraction" 
+              value={queryInput} 
+              onChange={handleQueryInput} 
+              required>
+            </input>
           </div>
-          <div className="button-submit-container">
+          <div className="button-container">
             <button>Search</button>
           </div>
         </form>
