@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 20px;
 }
 
@@ -29,18 +29,24 @@
   overflow-y: scroll;
   max-height: 400px;
 
-  ol {
+  select {
+    width: 100%;
     margin: 0px;
   }
 
-  li {
+  option {
     padding-top: 0px;
-    padding-bottom: 3px;
-  }
+    padding-bottom: 5px;
 
-  .highlight {
-    width: 100%;
-    background-color: rgba($aqua-blue, 0.8);
+    &:hover,
+    &:focus {
+      background-color: rgba($coral-pink, 0.8);
+    }
+
+    &:checked {
+      width: 100%;
+      background-color: rgba($aqua-blue, 0.8);
+    }
   }
 }
 
