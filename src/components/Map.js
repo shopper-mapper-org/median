@@ -8,6 +8,7 @@ import RoutingMachine from './RoutingMachine';
 const Map = ({ userQuery, userCoordinates, results, setResults }) => {
   const [route, setRoute] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
+  const [destination, setDestination] = useState(null);
   useEffect(() => {
     const getResults = async () => {
       const fetchedResults = await fetchResults(userQuery, userCoordinates);
@@ -23,10 +24,16 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
     setShowRoute(true);
   };
 
+  const handleBackToResultsClick = () => {
+    setShowRoute(false);
+    setDestination(null);
+  };
+
   return (
     <div className='map-view'>
       <div className='container'>
         <h2>Map</h2>
+        <button onClick={handleBackToResultsClick}>Back to results</button>
         <MapContainer
           center={userCoordinates}
           zoom={13}
@@ -53,12 +60,31 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
                 >
                   <Popup>
                     <div>{result.displayString}</div>
-                    <button onClick={() => handleDirectionsClick(userCoordinates, resultCoordinates)}>Directions</button>
+                    <button
+                      onClick={() => {
+                        handleDirectionsClick(userCoordinates, resultCoordinates);
+                        setDestination(result);
+                      }}
+                    >
+                      Directions
+                    </button>
                   </Popup>
                 </Marker>
               );
             })}
-          {showRoute && <RoutingMachine route={route} />}
+          {showRoute && (
+            <>
+              <RoutingMachine route={route} />
+              <Marker
+                position={[destination.place.geometry.coordinates[1], destination.place.geometry.coordinates[0]]}
+                icon={resultIcon}
+              >
+                <Popup>
+                  <div>{destination.displayString}</div>
+                </Popup>
+              </Marker>
+            </>
+          )}
         </MapContainer>
       </div>
     </div>
