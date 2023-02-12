@@ -32,15 +32,27 @@ const Results = ({ results, highlight, setHighlight }) => {
   // handle the user making selections in our select box
   const handleSelect = (event) => {
 
-    // set up empty array
+    // set up empty array for highlight IDs and highlight results
+    const curHighlightID = [];
     const curHighlight = [];
 
     // loop through selected options
     const curOptions = Array.from(event.target.selectedOptions);
     curOptions.forEach((option) => {
-      curHighlight.push(option.value);
+
+      // push the ID into our highlighted IDs array
+      curHighlightID.push(option.value);
+
+      // match the selected option to our results and push it into our highlighted results
+      results.forEach((result) => {
+        if (result.id === option.value) {
+          curHighlight.push(result);
+        }
+      })
     })
 
+    // set our state
+    setHighlightID(curHighlightID);
     setHighlight(curHighlight);
   }
 
