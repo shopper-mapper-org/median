@@ -17,13 +17,20 @@ function App() {
         setUserQuery={setUserQuery}
         setUserCoordinates={setUserCoordinates}
       />
-      <Map
-        results={results}
-        setResults={setResults}
-        userCoordinates={userCoordinates}
-        userQuery={userQuery}
-      />
-      <Results />
+      <section className="container">
+        <div className="results-map-container">
+        <Results
+          results={results}
+          // setResults={setResults}
+        />
+        <Map
+          results={results}
+          setResults={setResults}
+          userCoordinates={userCoordinates}
+          userQuery={userQuery}
+        />
+        </div>
+      </section>
       <Footer />
     </div>
   );

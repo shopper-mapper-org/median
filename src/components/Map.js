@@ -16,36 +16,34 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
 
   return (
     <div className='map-view'>
-      <div className='container'>
-        <h2>Map</h2>
-        <MapContainer
-          center={userCoordinates}
-          zoom={13}
-          scrollWheelZoom={false}
-          height='100vh'
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-          />
-          <Marker
-            position={userCoordinates}
-            icon={locationIcon}
-          ></Marker>
-          {results &&
-            results.map((result, index) => {
-              return (
-                <Marker
-                  key={index}
-                  position={[result.place.geometry.coordinates[1], result.place.geometry.coordinates[0]]}
-                  icon={resultIcon}
-                >
-                  <Popup>{result.displayString}</Popup>
-                </Marker>
-              );
-            })}
-        </MapContainer>
-      </div>
+      <h2>Map</h2>
+      <MapContainer
+        center={userCoordinates}
+        zoom={13}
+        scrollWheelZoom={false}
+        height='100vh'
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        />
+        <Marker
+          position={userCoordinates}
+          icon={locationIcon}
+        ></Marker>
+        {results &&
+          results.map((result, index) => {
+            return (
+              <Marker
+                key={index}
+                position={[result.place.geometry.coordinates[1], result.place.geometry.coordinates[0]]}
+                icon={resultIcon}
+              >
+                <Popup>{result.displayString}</Popup>
+              </Marker>
+            );
+          })}
+      </MapContainer>
     </div>
   );
 };
