@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { locationIcon, resultIcon } from '../utils/icons';
 import 'leaflet/dist/leaflet.css';
-import { fetchResults } from '../utils/services';
+import { fetchResults, fetchRoute } from '../utils/services';
+import RoutingMachine from './RoutingMachine';
 
 const Map = ({ userQuery, userCoordinates, results, setResults }) => {
+  const [route, setRoute] = useState([]);
+  const [showRoute, setShowRoute] = useState(false);
   useEffect(() => {
     const getResults = async () => {
       const fetchedResults = await fetchResults(userQuery, userCoordinates);
@@ -13,6 +16,12 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
     getResults();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userQuery, userCoordinates]);
+
+  const handleDirectionsClick = async (userCoords, resultCoords) => {
+    const fetchedRoute = await fetchRoute(userCoords, resultCoords);
+    setRoute(fetchedRoute);
+    setShowRoute(true);
+  };
 
   return (
     <div className='map-view'>
@@ -33,17 +42,23 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
             icon={locationIcon}
           ></Marker>
           {results &&
+            !showRoute &&
             results.map((result, index) => {
+              const resultCoordinates = [result.place.geometry.coordinates[1], result.place.geometry.coordinates[0]];
               return (
                 <Marker
                   key={index}
-                  position={[result.place.geometry.coordinates[1], result.place.geometry.coordinates[0]]}
+                  position={resultCoordinates}
                   icon={resultIcon}
                 >
-                  <Popup>{result.displayString}</Popup>
+                  <Popup>
+                    <div>{result.displayString}</div>
+                    <button onClick={() => handleDirectionsClick(userCoordinates, resultCoordinates)}>Directions</button>
+                  </Popup>
                 </Marker>
               );
             })}
+          {showRoute && <RoutingMachine route={route} />}
         </MapContainer>
       </div>
     </div>
