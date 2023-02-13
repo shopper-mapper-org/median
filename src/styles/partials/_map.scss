@@ -3,4 +3,53 @@
 .leaflet-container {
   height: 400px;
   margin-block: 25px;
+  border-radius: 5px;
+}
+
+.results-map-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+.results-view {
+  flex-basis: calc(35% - 10px);
+}
+
+.results {
+  font-family: $body-font;
+  color: black;
+  border: 2px solid $light-green;
+  border-radius: 5px;
+  background-color: $light-green;
+  background-color: rgba($light-green, 0.8);
+  overflow-y: scroll;
+  max-height: 400px;
+
+  select {
+    width: 100%;
+    margin: 0px;
+  }
+
+  option {
+    padding-top: 0px;
+    padding-bottom: 5px;
+
+    &:hover,
+    &:focus {
+      background-color: rgba($coral-pink, 0.8);
+    }
+
+    &:checked {
+      width: 100%;
+      background-color: rgba($aqua-blue, 0.8);
+    }
+  }
+}
+
+.map-view {
+  flex-basis: calc(65% - 10px);
 }
