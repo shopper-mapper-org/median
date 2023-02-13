@@ -18,4 +18,21 @@ const fetchResults = async (query, coordinates, range = 10000) => {
   }
 };
 
-export { fetchResults };
+const fetchRoute = async (from, to) => {
+  try {
+    const res = await axios({
+      url: 'https://www.mapquestapi.com/directions/v2/route',
+      responseType: 'json',
+      params: {
+        key: '4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH',
+        from: from.join(','),
+        to: to.join(','),
+      },
+    });
+    return res.data.route;
+  } catch (err) {
+    console.log('error: ', err);
+  }
+};
+
+export { fetchResults, fetchRoute };
