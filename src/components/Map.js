@@ -31,7 +31,6 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
 
   return (
     <div className='map-view'>
-      <div className='container'>
         <h2>Map</h2>
         <button onClick={handleBackToResultsClick}>Back to results</button>
         <MapContainer
@@ -86,7 +85,6 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
             </>
           )}
         </MapContainer>
-      </div>
     </div>
   );
 };

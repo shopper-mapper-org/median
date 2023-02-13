@@ -8,6 +8,7 @@ import Form from './components/Form';
 
 function App() {
   const [results, setResults] = useState([]);
+  const [highlight, setHighlight] = useState([]);
   const [userQuery, setUserQuery] = useState('sushi');
   const [userCoordinates, setUserCoordinates] = useState([43.65107, -79.347015]);
   return (
@@ -17,13 +18,21 @@ function App() {
         setUserQuery={setUserQuery}
         setUserCoordinates={setUserCoordinates}
       />
-      <Map
-        results={results}
-        setResults={setResults}
-        userCoordinates={userCoordinates}
-        userQuery={userQuery}
-      />
-      <Results />
+      <section className="container">
+        <div className="results-map-container">
+        <Results
+          results={results}
+          highlight={highlight}
+          setHighlight={setHighlight}
+        />
+        <Map
+          results={results}
+          setResults={setResults}
+          userCoordinates={userCoordinates}
+          userQuery={userQuery}
+        />
+        </div>
+      </section>
       <Footer />
     </div>
   );
