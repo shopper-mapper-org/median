@@ -24,7 +24,7 @@ function App() {
         <div className="results-map-container">
         <Results
           results={results}
-          highlight={highlight}
+          userQuery={userQuery}
           setHighlight={setHighlight}
         />
         <Map

@@ -51,7 +51,7 @@ const setMiddle = (dataArray) => {
 
     // otherwise, we have an even length array & we have 2 values for the middle
     dataArray[curIndex].isMiddle = true;
-    dataArray[curIndex + 1].isMiddle = true;
+    dataArray[curIndex - 1].isMiddle = true;
   }
 };
 
