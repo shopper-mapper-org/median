@@ -9,14 +9,15 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
   const [route, setRoute] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
   const [destination, setDestination] = useState(null);
-  useEffect(() => {
-    const getResults = async () => {
-      const fetchedResults = await fetchResults(userQuery, userCoordinates);
-      setResults(fetchedResults);
-    };
-    getResults();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userQuery, userCoordinates]);
+  
+  // useEffect(() => {
+  //   const getResults = async () => {
+  //     const fetchedResults = await fetchResults(userQuery, userCoordinates);
+  //     setResults(fetchedResults);
+  //   };
+  //   getResults();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [userQuery, userCoordinates]);
 
   const handleDirectionsClick = async (userCoords, resultCoords) => {
     const fetchedRoute = await fetchRoute(userCoords, resultCoords);
