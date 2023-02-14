@@ -32,7 +32,7 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
   return (
     <div className='map-view'>
         <h2>Map</h2>
-        <button onClick={handleBackToResultsClick}>Back to results</button>
+        <button className='map-view-button' onClick={handleBackToResultsClick}>Back to results</button>
         <MapContainer
           center={userCoordinates}
           zoom={13}

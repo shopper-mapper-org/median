@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { middleIcon } from '../utils/icons';
+import { setMiddle } from '../utils/services';
 
 const Results = ({ results, highlight, setHighlight }) => {
   // using index value of the result array to determine highlighted result
@@ -6,6 +8,7 @@ const Results = ({ results, highlight, setHighlight }) => {
 
   // on mount and on change to results, we find the element to highlight
   useEffect(() => {
+    setMiddle(results);
     const curIndex = Math.floor(results.length / 2);
     const curHighlightID = [];
     const curHighlight = [];
@@ -27,6 +30,8 @@ const Results = ({ results, highlight, setHighlight }) => {
 
     setHighlightID(curHighlightID);
     setHighlight(curHighlight);
+    // console.log("curHighlightID: ", curHighlightID);
+    // console.log("curHighlight: ", curHighlight);
   }, [results]);
 
   // handle the user making selections in our select box
@@ -66,17 +71,22 @@ const Results = ({ results, highlight, setHighlight }) => {
               name="results-select"
               id="results-select"
               multiple
-              defaultValue={highlightID}
+              defaultValue={[]}
               size={results.length}
               onChange={handleSelect}>
                 {results.map((result) => {
-                  return (
-                    <option key={result.id} value={result.id}>
+                  return ( 
+                    <option key={result.id} value={result.id}
+                    className={(result.isMiddle) ? 'result-middle' : ''}>
                       {result.name}, {result.place.properties.street}, {result.place.properties.postalCode}
                     </option>
                   )
                 })}
-            </select> : null
+            </select> : 
+            <section className="results-error">
+              <h3>No Results Found</h3>
+              <p>Make sure your search is spelled correctly. Or, try adding more information, like city, province, or postal code.</p>
+            </section>
         )}
       </div>
     </div>
