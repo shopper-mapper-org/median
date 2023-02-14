@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import axios from 'axios';
+import { fetchResults } from '../utils/services';
 
-const Form = () => {
+const Form = ({setUserCoordinates, setResults, userCoordinates}) => {
 
   const [locationInput, setLocationInput] = useState("");
-  const [userSubmit, setUserSubmit] = useState("");
   const [queryInput, setQueryInput] = useState("");
+  // const [userSubmit, setUserSubmit] = useState("");
 
   const handleLocInput = (event) => {
     setLocationInput(event.target.value);
@@ -18,30 +19,27 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setUserSubmit(locationInput);
-    console.log('location input: ', locationInput);
-    console.log('query input: ', queryInput);
-    getData();
+    getLocation();
+    // setUserSubmit(locationInput);
+    const getResults = async () => {
+      const fetchedResults = await fetchResults(queryInput, userCoordinates);
+      setResults(fetchedResults);
+    };
+    getResults();
   }
 
-  const getData = async () => {
-    // https://www.mapquestapi.com/search/v3/prediction?limit=5&collection=address&location=-79.39767202917781,43.64990390157667&q=32 corbett&key=ck2OXUAJsF0iz999XGQ62jyXo8AXOVp7
+  const getLocation = async () => {
     const res = await axios({
-      url: `https://www.mapquestapi.com/search/v4/place`,
+      url: `http://www.mapquestapi.com/geocoding/v1/address`,
       params: {
-        key: 'ck2OXUAJsF0iz999XGQ62jyXo8AXOVp7',
-        pageSize: 20,
-        location: "-79.39767202917781, 43.64990390157667",
-        circle: '-79.39767202917781, 43.64990390157667, 20000',
-        sort: 'relevance',
-        q: 'sushi'
+        key: 'gPUrgaMSl0DswT2EV39KejByUmEIpNI8',
+        location: locationInput
       }
     })
-    // const res = await fetch('https://www.mapquestapi.com/search/v4/place?limit=10&location=-79.39767202917781,43.64990390157667&q=32 corbett&key=ck2OXUAJsF0iz999XGQ62jyXo8AXOVp7&sort=distance')
-    // const data = await res.json();
-    console.log(res);
+    const coordinates = [res.data.results[0].locations[0].displayLatLng.lat, res.data.results[0].locations[0].displayLatLng.lng];
+    console.log (coordinates);
+    setUserCoordinates(coordinates);
   }
-
 
   return (
     <>
