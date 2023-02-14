@@ -4,8 +4,9 @@ import { locationIcon, resultIcon, middleIcon } from "../utils/icons";
 import "leaflet/dist/leaflet.css";
 import { fetchResults, fetchRoute } from "../utils/services";
 import Routing from "./Routing";
+import FaveButton from "./FaveButton";
 
-const Map = ({ userQuery, userCoordinates, results, setResults }) => {
+const Map = ({ userQuery, userCoordinates, results, setResults, isInFaves, faves }) => {
   const [route, setRoute] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
   const [destination, setDestination] = useState(null);
@@ -66,6 +67,11 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
                   >
                     Directions
                   </button>
+                  <FaveButton
+                    result={result}
+                    isInFaves={isInFaves}
+                    faves={faves}
+                  />
                 </Popup>
               </Marker>
             );
@@ -79,6 +85,10 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
             >
               <Popup>
                 <div>{destination.displayString}</div>
+                <FaveButton
+                  result={destination}
+                  isInFaves={isInFaves}
+                />
               </Popup>
             </Marker>
           </>
