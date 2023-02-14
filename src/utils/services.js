@@ -55,4 +55,22 @@ const setMiddle = (dataArray) => {
   }
 };
 
-export { fetchResults, fetchRoute, setMiddle };
+const setHighlights = (dataArray, highlightArray) => {
+
+  // reset all highlights
+  dataArray.forEach((data) => {
+    data.isHighlight=false;
+  })
+
+  // go through data
+  dataArray.forEach((data) => {
+    // if data matches the ID in highlight, set isHighlight
+    highlightArray.forEach((highlight) => {
+      if (data.id === highlight.id) {
+        data.isHighlight = true;
+      }
+    })
+  })
+}
+
+export { fetchResults, fetchRoute, setMiddle, setHighlights };

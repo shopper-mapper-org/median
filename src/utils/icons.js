@@ -6,13 +6,23 @@ const locationIcon = new Icon({
 });
 
 const resultIcon = new Icon({
-  iconUrl: "https://assets.mapquestapi.com/icon/v2/marker-sm-F8E71C-417505.png",
+  iconUrl: "https://assets.mapquestapi.com/icon/v2/marker-sm-82A05A-C4E39C.png",
   iconSize: 25,
 });
 
 const middleIcon = new Icon({
-  iconUrl: 'https://assets.mapquestapi.com/icon/v2/circle-lg-5BC5FF-M.png',
+  iconUrl: "https://assets.mapquestapi.com/icon/v2/circle-lg-5BC5FF-M.png",
   iconSize: 35,
 })
 
-export { locationIcon, resultIcon, middleIcon };
+const highlightIcon = new Icon ({
+  iconUrl: "https://assets.mapquestapi.com/icon/v2/marker-sm-FF9D7F-FFFFFF.png",
+  iconSize: 25,
+})
+
+const middleHighlight = new Icon ({
+  iconUrl: "https://assets.mapquestapi.com/icon/v2/marker-md-5BC5FF-FF9D7F-M.png",
+  iconSize: 35,
+})
+
+export { locationIcon, resultIcon, middleIcon, highlightIcon, middleHighlight };

@@ -25,6 +25,7 @@ function App() {
         <Results
           results={results}
           userQuery={userQuery}
+          highlight={highlight}
           setHighlight={setHighlight}
         />
         <Map
