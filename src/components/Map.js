@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { resultIcon, middleIcon, faveIcon } from "../utils/icons";
+import { resultIcon, middleIcon, faveIcon, highlightIcon, middleHighlight } from "../utils/icons";
 import "leaflet/dist/leaflet.css";
 import { fetchRoute } from "../utils/services";
 import Routing from "./Routing";
@@ -86,7 +86,11 @@ const Map = ({ userCoordinates, results, isInFaves, faves }) => {
               <Marker
                 key={index}
                 position={resultCoordinates}
-                icon={result.isMiddle ? middleIcon : isInFaves(result.id) ? faveIcon : resultIcon}
+                icon={(result.isMiddle && result.isHighlight) ? middleHighlight
+                  : result.isMiddle ? middleIcon
+                  : result.isHighlight ? highlightIcon
+                  : isInFaves(result.id) ? faveIcon
+                  : resultIcon}
               >
                 <Popup>
                   <div>{result.displayString}</div>

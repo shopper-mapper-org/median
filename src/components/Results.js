@@ -1,38 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { middleIcon } from '../utils/icons';
-import { setMiddle } from '../utils/services';
+import { setMiddle, setHighlights } from '../utils/services';
 
-const Results = ({ results, highlight, setHighlight }) => {
-  // using index value of the result array to determine highlighted result
+const Results = ({ results, userQuery, highlight, setHighlight }) => {
+  // use ID value of the results array to determine highlighted result & keep it in state
   const [highlightID, setHighlightID] = useState([]);
 
   // on mount and on change to results, we find the element to highlight
   useEffect(() => {
     setMiddle(results);
-    const curIndex = Math.floor(results.length / 2);
-    const curHighlightID = [];
-    const curHighlight = [];
+  }, [userQuery, results]);
 
-    // if we have an odd length array...
-    if (results.length > 0 && results.length % 2) {
-
-      // we have 1 value for the middle
-      curHighlightID.push(results[curIndex].id);
-      curHighlight.push(results[curIndex]);
-    } else if (results.length > 0) {
-
-      // otherwise, we have an even length array & we have 2 values for the middle
-      curHighlightID.push(results[curIndex].id);
-      curHighlightID.push(results[curIndex + 1].id);
-      curHighlight.push(results[curIndex]);
-      curHighlight.push(results[curIndex + 1]);
-    }
-
-    setHighlightID(curHighlightID);
-    setHighlight(curHighlight);
-    // console.log("curHighlightID: ", curHighlightID);
-    // console.log("curHighlight: ", curHighlight);
-  }, [results]);
+  // whenever we change the highlighted selection, we update results so it links to Map
+  useEffect(() => {
+    setHighlights(results, highlight);
+  }, [highlight])
 
   // handle the user making selections in our select box
   const handleSelect = (event) => {
@@ -66,12 +47,12 @@ const Results = ({ results, highlight, setHighlight }) => {
       <label htmlFor="result-select"><h2>Results</h2></label>
       <div className="results">
         {(
-          (highlight.length > 0) ? 
+          (results.length > 0) ? 
             <select
               name="results-select"
               id="results-select"
               multiple
-              defaultValue={[]}
+              defaultValue={highlightID}
               size={results.length}
               onChange={handleSelect}>
                 {results.map((result) => {
@@ -82,10 +63,15 @@ const Results = ({ results, highlight, setHighlight }) => {
                     </option>
                   )
                 })}
-            </select> : 
+            </select>
+            : (userQuery && results.length === 0) ? 
             <section className="results-error">
               <h3>No Results Found</h3>
               <p>Make sure your search is spelled correctly. Or, try adding more information, like city, province, or postal code.</p>
+            </section>
+            :
+            <section className="results-error">
+              <p>Please input search terms</p>
             </section>
         )}
       </div>

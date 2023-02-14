@@ -66,8 +66,26 @@ const setMiddle = (dataArray) => {
   } else if (dataArray.length > 0) {
     // otherwise, we have an even length array & we have 2 values for the middle
     dataArray[curIndex].isMiddle = true;
-    dataArray[curIndex + 1].isMiddle = true;
+    dataArray[curIndex - 1].isMiddle = true;
   }
 };
 
-export { fetchResults, fetchRoute, fetchAddress, setMiddle };
+const setHighlights = (dataArray, highlightArray) => {
+
+  // reset all highlights
+  dataArray.forEach((data) => {
+    data.isHighlight=false;
+  })
+
+  // go through data
+  dataArray.forEach((data) => {
+    // if data matches the ID in highlight, set isHighlight
+    highlightArray.forEach((highlight) => {
+      if (data.id === highlight.id) {
+        data.isHighlight = true;
+      }
+    })
+  })
+}
+
+export { fetchResults, fetchRoute, fetchAddress, setMiddle, setHighlights };
