@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { locationIcon, resultIcon } from '../utils/icons';
 import 'leaflet/dist/leaflet.css';
 import { fetchResults, fetchRoute } from '../utils/services';
-import RoutingMachine from './RoutingMachine';
+import Routing from './Routing';
 
 const Map = ({ userQuery, userCoordinates, results, setResults }) => {
   const [route, setRoute] = useState([]);
@@ -73,7 +73,7 @@ const Map = ({ userQuery, userCoordinates, results, setResults }) => {
             })}
           {showRoute && (
             <>
-              <RoutingMachine route={route} />
+              <Routing route={route} />
               <Marker
                 position={[destination.place.geometry.coordinates[1], destination.place.geometry.coordinates[0]]}
                 icon={resultIcon}
