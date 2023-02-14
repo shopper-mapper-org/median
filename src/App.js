@@ -14,8 +14,9 @@ function App() {
     <div className='App'>
       <Header />
       <Form
-        setUserQuery={setUserQuery}
         setUserCoordinates={setUserCoordinates}
+        userCoordinates={userCoordinates}
+        setResults={setResults}
       />
       <Map
         results={results}
