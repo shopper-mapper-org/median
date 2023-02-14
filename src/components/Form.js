@@ -19,8 +19,11 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery })
       console.log(e);
       setLocationInput(e.result.value);
       setUserCoordinates([e.result.latlng.lat, e.result.latlng.lng]);
-      // psLocation.setVal(e.result.value);
-      // psLocation.close();
+      psLocation.setVal(e.result.value);
+      psLocation.close();
+    });
+    psLocation.on("clear", (e) => {
+      setLocationInput("");
     });
     const psQuery = window.placeSearch({
       key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
@@ -31,8 +34,11 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery })
     psQuery.on("change", (e) => {
       console.log(e);
       setUserQuery(e.result.value);
-      // psQuery.setVal(e.result.value);
-      // psQuery.close();
+      psQuery.setVal(e.result.value);
+      psQuery.close();
+    });
+    psQuery.on("clear", (e) => {
+      setQueryInput("");
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
