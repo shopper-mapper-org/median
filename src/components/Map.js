@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { locationIcon, resultIcon, middleIcon } from "../utils/icons";
+import { resultIcon, middleIcon } from "../utils/icons";
 import "leaflet/dist/leaflet.css";
 import { fetchRoute } from "../utils/services";
 import Routing from "./Routing";
-import ChangeView from "./ChangeView";
+import UserMarker from "./UserMarker";
 
 const Map = ({ userCoordinates, results }) => {
   const [route, setRoute] = useState([]);
@@ -40,10 +40,7 @@ const Map = ({ userCoordinates, results }) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker
-          position={userCoordinates}
-          icon={locationIcon}
-        ></Marker>
+        <UserMarker userCoordinates={userCoordinates} />
         {results &&
           !showRoute &&
           results.map((result, index) => {
@@ -81,10 +78,6 @@ const Map = ({ userCoordinates, results }) => {
             </Marker>
           </>
         )}
-        <ChangeView
-          center={userCoordinates}
-          zoom={12}
-        />
       </MapContainer>
     </div>
   );
