@@ -43,7 +43,7 @@
             &:hover,
             &:focus{
                 transform: scale(1.05);
-                background-color: $light-green;
+                background-color: rgba($light-green, 0.7);
             }
         }
     }
