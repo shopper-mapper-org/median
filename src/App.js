@@ -11,7 +11,7 @@ import firebase from "./database/firebase";
 function App() {
   const [results, setResults] = useState([]);
   const [highlight, setHighlight] = useState([]);
-  const [userQuery, setUserQuery] = useState("sushi");
+  const [userQuery, setUserQuery] = useState("");
   const [userCoordinates, setUserCoordinates] = useState([43.65107, -79.347015]);
   const [faves, setFaves] = useState([]);
 
@@ -41,6 +41,7 @@ function App() {
         setUserCoordinates={setUserCoordinates}
         userCoordinates={userCoordinates}
         setResults={setResults}
+        setUserQuery={setUserQuery}
       />
       <section className="container">
         <div className="results-map-container">

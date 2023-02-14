@@ -49,8 +49,42 @@
       background-color: rgba($aqua-blue, 0.8);
     }
   }
+
+  .result-middle {
+    background-image: url(https://assets.mapquestapi.com/icon/v2/circle-sm-5BC5FF-C4E39C-M.png);
+    background-repeat: no-repeat;
+    padding-top: 3px;
+    padding-left: 35px;
+    margin-left: 5px;
+  }
+}
+
+.results-error {
+  padding: 20px;
+  background-color: $light-green;
+  background-color: rgba($light-green, 0.8);
 }
 
 .map-view {
   flex-basis: calc(65% - 10px);
+  position: relative;
+
+  .map-view-button {
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    width: 200px;
+    height: 40px;
+    background-color: $light-green;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 15px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    transition: 0.1s ease-in;
+  
+    &:hover,
+    &:focus {
+      background-color: rgba($light-green, 0.7);
+    }
+  }
 }

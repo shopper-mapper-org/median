@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { locationIcon, resultIcon, middleIcon } from "../utils/icons";
+import { resultIcon, middleIcon } from "../utils/icons";
 import "leaflet/dist/leaflet.css";
-import { fetchResults, fetchRoute } from "../utils/services";
+import { fetchRoute } from "../utils/services";
 import Routing from "./Routing";
+import UserMarker from "./UserMarker";
 import FaveButton from "./FaveButton";
 
 const Map = ({ userQuery, userCoordinates, results, setResults, isInFaves, faves }) => {
   const [route, setRoute] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
   const [destination, setDestination] = useState(null);
-  useEffect(() => {
-    const getResults = async () => {
-      const fetchedResults = await fetchResults(userQuery, userCoordinates);
-      setResults(fetchedResults);
-    };
-    getResults();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userQuery, userCoordinates]);
 
   const handleDirectionsClick = async (userCoords, resultCoords) => {
     const fetchedRoute = await fetchRoute(userCoords, resultCoords);
@@ -33,7 +26,12 @@ const Map = ({ userQuery, userCoordinates, results, setResults, isInFaves, faves
   return (
     <div className="map-view">
       <h2>Map</h2>
-      <button onClick={handleBackToResultsClick}>Back to results</button>
+      <button
+        className="map-view-button"
+        onClick={handleBackToResultsClick}
+      >
+        Back to results
+      </button>
       <MapContainer
         center={userCoordinates}
         zoom={13}
@@ -43,10 +41,7 @@ const Map = ({ userQuery, userCoordinates, results, setResults, isInFaves, faves
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker
-          position={userCoordinates}
-          icon={locationIcon}
-        ></Marker>
+        <UserMarker userCoordinates={userCoordinates} />
         {results &&
           !showRoute &&
           results.map((result, index) => {
