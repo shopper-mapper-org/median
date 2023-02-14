@@ -1,18 +1,15 @@
-import { useState, useEffect } from 'react';
-import React from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { fetchResults } from '../utils/services';
 
-const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery }) => {
+const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, locationInput, setLocationInput }) => {
 
-  const [locationInput, setLocationInput] = useState("");
   const [queryInput, setQueryInput] = useState("");
   // const [userSubmit, setUserSubmit] = useState("");
 
   useEffect(() => {
     const psLocation = window.placeSearch({
       key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
-      container: document.querySelector("#location"),
+      container: document.querySelector('#location'),
       useDeviceLocation: true,
     });
     psLocation.on("change", (e) => {
@@ -27,7 +24,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery })
     });
     const psQuery = window.placeSearch({
       key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
-      container: document.querySelector("#query"),
+      container: document.querySelector('#query'),
       useDeviceLocation: true,
       collection: ["category", "franchise"],
     });
@@ -98,7 +95,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery })
               id="location" 
               placeholder="Enter Location" 
               value={locationInput} 
-              onChange={handleLocInput} 
+              onChange={handleLocInput}
               required>
             </input>
           </div>

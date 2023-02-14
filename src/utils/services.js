@@ -39,16 +39,31 @@ const fetchRoute = async (from, to) => {
   }
 };
 
+const fetchAddress = async (lat, lon) => {
+  try {
+    const res = await axios({
+      url: "http://www.mapquestapi.com/geocoding/v1/reverse",
+      responseType: "json",
+      params: {
+        key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
+        location: `${lat},${lon}`,
+      },
+    });
+    return res.data.results[0].locations[0].street;
+  } catch (err) {
+    console.log(err);
+    errorAlert();
+  }
+};
+
 const setMiddle = (dataArray) => {
   const curIndex = Math.floor(dataArray.length / 2);
 
   // if we have an odd length array...
   if (dataArray.length > 0 && dataArray.length % 2) {
-
     // we have 1 value for the middle
     dataArray[curIndex].isMiddle = true;
   } else if (dataArray.length > 0) {
-
     // otherwise, we have an even length array & we have 2 values for the middle
     dataArray[curIndex].isMiddle = true;
     dataArray[curIndex - 1].isMiddle = true;
@@ -73,4 +88,4 @@ const setHighlights = (dataArray, highlightArray) => {
   })
 }
 
-export { fetchResults, fetchRoute, setMiddle, setHighlights };
+export { fetchResults, fetchRoute, fetchAddress, setMiddle, setHighlights };
