@@ -11,8 +11,13 @@ const resultIcon = new Icon({
 });
 
 const middleIcon = new Icon({
-  iconUrl: 'https://assets.mapquestapi.com/icon/v2/circle-lg-C4E39C-5BC5FF-M.png',
+  iconUrl: "https://assets.mapquestapi.com/icon/v2/circle-lg-C4E39C-5BC5FF-M.png",
   iconSize: 35,
-})
+});
 
-export { locationIcon, resultIcon, middleIcon };
+const faveIcon = new Icon({
+  iconUrl: "https://assets.mapquestapi.com/icon/v2/circle-lg-5BC5FF-C4E39C-F.png",
+  iconSize: 35,
+});
+
+export { locationIcon, resultIcon, middleIcon, faveIcon };

@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { resultIcon, middleIcon } from "../utils/icons";
+import { resultIcon, middleIcon, faveIcon } from "../utils/icons";
 import "leaflet/dist/leaflet.css";
 import { fetchRoute } from "../utils/services";
 import Routing from "./Routing";
 import UserMarker from "./UserMarker";
 import FaveButton from "./FaveButton";
 
-const Map = ({ userQuery, userCoordinates, results, setResults, isInFaves, faves }) => {
+const Map = ({ userCoordinates, results, isInFaves, faves }) => {
   const [route, setRoute] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
   const [destination, setDestination] = useState(null);
+  const [showFaves, setShowFaves] = useState(false);
 
   const handleDirectionsClick = async (userCoords, resultCoords) => {
     const fetchedRoute = await fetchRoute(userCoords, resultCoords);
@@ -21,6 +22,10 @@ const Map = ({ userQuery, userCoordinates, results, setResults, isInFaves, faves
   const handleBackToResultsClick = () => {
     setShowRoute(false);
     setDestination(null);
+  };
+
+  const faveCount = (result) => {
+    return faves.filter((fave) => fave.id === result.id)[0].faves;
   };
 
   return (
@@ -42,7 +47,38 @@ const Map = ({ userQuery, userCoordinates, results, setResults, isInFaves, faves
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <UserMarker userCoordinates={userCoordinates} />
-        {results &&
+        {faves.length > 0 &&
+          showFaves &&
+          !showRoute &&
+          faves.map((fave, index) => {
+            const faveCoordinates = [fave.place.geometry.coordinates[1], fave.place.geometry.coordinates[0]];
+            return (
+              <Marker
+                key={index}
+                position={faveCoordinates}
+                icon={fave.isMiddle ? middleIcon : faveIcon}
+              >
+                <Popup>
+                  <div>{fave.displayString}</div>
+                  <button
+                    onClick={() => {
+                      handleDirectionsClick(userCoordinates, faveCoordinates);
+                      setDestination(fave);
+                    }}
+                  >
+                    Directions
+                  </button>
+                  <FaveButton
+                    result={fave}
+                    isInFaves={isInFaves}
+                    faves={faves}
+                  />
+                  <div>Fave Count: {faveCount(fave)}</div>
+                </Popup>
+              </Marker>
+            );
+          })}
+        {results.length > 0 &&
           !showRoute &&
           results.map((result, index) => {
             const resultCoordinates = [result.place.geometry.coordinates[1], result.place.geometry.coordinates[0]];
@@ -50,7 +86,7 @@ const Map = ({ userQuery, userCoordinates, results, setResults, isInFaves, faves
               <Marker
                 key={index}
                 position={resultCoordinates}
-                icon={result.isMiddle ? middleIcon : resultIcon}
+                icon={result.isMiddle ? middleIcon : isInFaves(result.id) ? faveIcon : resultIcon}
               >
                 <Popup>
                   <div>{result.displayString}</div>
@@ -67,6 +103,7 @@ const Map = ({ userQuery, userCoordinates, results, setResults, isInFaves, faves
                     isInFaves={isInFaves}
                     faves={faves}
                   />
+                  {isInFaves(result.id) && <div>Fave Count: {faveCount(result)}</div>}
                 </Popup>
               </Marker>
             );
@@ -89,6 +126,14 @@ const Map = ({ userQuery, userCoordinates, results, setResults, isInFaves, faves
           </>
         )}
       </MapContainer>
+      <label>
+        <input
+          type="checkbox"
+          value={showFaves}
+          onChange={() => setShowFaves(!showFaves)}
+        />{" "}
+        Show Faves
+      </label>
     </div>
   );
 };
