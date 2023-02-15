@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { fetchResults } from "../utils/services";
+import { fetchResults, fetchAddress } from "../utils/services";
+import { errorAlert } from "../utils/alerts";
 
 const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, locationInput, setLocationInput }) => {
   const [queryInput, setQueryInput] = useState("");
@@ -39,30 +40,6 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   if(userCoordinates.length === 2){
-  //     const getResults = async () => {
-  //       const fetchedResults = await fetchResults(queryInput, userCoordinates);
-  //       setResults(fetchedResults);
-  //     };
-  //     console.log('Getting Results');
-  //     getResults();
-  //   }
-  // }, [userCoordinates])
-
-  // const getLocation = async () => {
-  //   const res = await axios({
-  //     url: `http://www.mapquestapi.com/geocoding/v1/address`,
-  //     params: {
-  //       key: 'gPUrgaMSl0DswT2EV39KejByUmEIpNI8',
-  //       location: locationInput
-  //     }
-  //   })
-  //   const coordinates = [res.data.results[0].locations[0].displayLatLng.lat, res.data.results[0].locations[0].displayLatLng.lng];
-  //   console.log (coordinates);
-  //   setUserCoordinates(coordinates);
-  // }
-
   const handleLocInput = (event) => {
     setLocationInput(event.target.value);
   };
@@ -79,6 +56,38 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
       setResults(fetchedResults);
     };
     getResults();
+  };
+
+  const handleGeolocationClick = () => {
+    // geolocation
+    const locationContainer = document.querySelector("#location");
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          // set user coordinates
+          const geoLatitude = pos.coords.latitude;
+          const geoLongitude = pos.coords.longitude;
+          setUserCoordinates([geoLatitude, geoLongitude]);
+          // set user location using coordinates
+          const getAddress = async () => {
+            const fetchedAddress = await fetchAddress(geoLatitude, geoLongitude);
+            setLocationInput(fetchedAddress);
+            const psLocation = window.placeSearch({
+              key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
+              container: locationContainer,
+              useDeviceLocation: true,
+            });
+            psLocation.setVal(fetchedAddress);
+          };
+          getAddress();
+        },
+        (err) => {
+          errorAlert(err.message);
+        }
+      );
+    } else {
+      errorAlert("No geolocation object found");
+    }
   };
 
   return (
@@ -112,7 +121,13 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
             ></input>
           </div>
           <div className="button-container">
-            <button>Search</button>
+            <button type="submit">Search</button>
+            <button
+              type="button"
+              onClick={handleGeolocationClick}
+            >
+              Use GPS location
+            </button>
           </div>
         </form>
       </section>
