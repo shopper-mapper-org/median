@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { fetchResults } from '../utils/services';
+import React, { useState, useEffect } from "react";
+import { fetchResults } from "../utils/services";
 
 const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, locationInput, setLocationInput }) => {
-
   const [queryInput, setQueryInput] = useState("");
   // const [userSubmit, setUserSubmit] = useState("");
 
   useEffect(() => {
     const psLocation = window.placeSearch({
       key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
-      container: document.querySelector('#location'),
+      container: document.querySelector("#location"),
       useDeviceLocation: true,
     });
     psLocation.on("change", (e) => {
@@ -24,7 +23,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
     });
     const psQuery = window.placeSearch({
       key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
-      container: document.querySelector('#query'),
+      container: document.querySelector("#query"),
       useDeviceLocation: true,
       collection: ["category", "franchise"],
     });
@@ -66,11 +65,11 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
 
   const handleLocInput = (event) => {
     setLocationInput(event.target.value);
-  }
+  };
 
   const handleQueryInput = (event) => {
     setQueryInput(event.target.value);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -80,35 +79,37 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
       setResults(fetchedResults);
     };
     getResults();
-  }
-
+  };
 
   return (
     <>
       <section className="container">
         {/* Placeholder, change to desired text */}
-        <form className="form-container" onSubmit={handleSubmit}>
+        <form
+          className="form-container"
+          onSubmit={handleSubmit}
+        >
           <div className="location-container">
             <label htmlFor="location">Enter your Location or Starting Point</label>
-            <input 
-              type="text" 
-              id="location" 
-              placeholder="Enter Location" 
-              value={locationInput} 
+            <input
+              type="text"
+              id="location"
+              placeholder="Enter Location"
+              value={locationInput}
               onChange={handleLocInput}
-              required>
-            </input>
+              required
+            ></input>
           </div>
           <div className="query-container">
             <label htmlFor="query">Try Searching for an Attraction (e.g Museum, Restaurant, etc..)</label>
-            <input 
-              type="text" 
-              id="query" 
-              placeholder="Enter Attraction" 
-              value={queryInput} 
-              onChange={handleQueryInput} 
-              required>
-            </input>
+            <input
+              type="text"
+              id="query"
+              placeholder="Enter Attraction"
+              value={queryInput}
+              onChange={handleQueryInput}
+              required
+            ></input>
           </div>
           <div className="button-container">
             <button>Search</button>

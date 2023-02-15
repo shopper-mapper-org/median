@@ -1,5 +1,4 @@
 import axios from "axios";
-import Swal from "sweetalert2";
 import { errorAlert } from "./alerts";
 
 const fetchResults = async (query, coordinates, range = 10000) => {
@@ -71,11 +70,10 @@ const setMiddle = (dataArray) => {
 };
 
 const setHighlights = (dataArray, highlightArray) => {
-
   // reset all highlights
   dataArray.forEach((data) => {
-    data.isHighlight=false;
-  })
+    data.isHighlight = false;
+  });
 
   // go through data
   dataArray.forEach((data) => {
@@ -84,8 +82,8 @@ const setHighlights = (dataArray, highlightArray) => {
       if (data.id === highlight.id) {
         data.isHighlight = true;
       }
-    })
-  })
-}
+    });
+  });
+};
 
 export { fetchResults, fetchRoute, fetchAddress, setMiddle, setHighlights };
