@@ -91,6 +91,22 @@ function App() {
         </div>
       </section>
       <Footer />
+
+      {/* <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Form />
+              <Results />
+              <Map />
+            </>
+          }>
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes> */}
+
     </div>
   );
 }
