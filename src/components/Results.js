@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { setMiddle, setHighlights } from "../utils/services";
+import { setHighlights } from "../utils/services";
 
 const Results = ({ results, userQuery, highlight, setHighlight }) => {
   // use ID value of the results array to determine highlighted result & keep it in state
   const [highlightID, setHighlightID] = useState([]);
 
   // on mount and on change to results, we find the element to highlight
-  useEffect(() => {
-    setMiddle(results);
-    console.log("userQuery: ", userQuery);
-    console.log("results: ", results);
-  }, [results]);
+  // useEffect(() => {
+  //   setMiddle(results);
+  // }, [results]);
 
   // whenever we change the highlighted selection, we update results so it links to Map
   useEffect(() => {

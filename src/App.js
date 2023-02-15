@@ -74,20 +74,21 @@ function App() {
       />
       <section className="container">
         <div className="results-map-container">
-        <Results
-          results={results}
-          userQuery={userQuery}
-          highlight={highlight}
-          setHighlight={setHighlight}
-        />
-        <Map
-          results={results}
-          setResults={setResults}
-          userCoordinates={userCoordinates}
-          userQuery={userQuery}
-          isInFaves={isInFaves}
-          faves={faves}
-        />
+          <Results
+            results={results}
+            userQuery={userQuery}
+            highlight={highlight}
+            setHighlight={setHighlight}
+          />
+          <Map
+            results={results}
+            setResults={setResults}
+            userCoordinates={userCoordinates}
+            userQuery={userQuery}
+            isInFaves={isInFaves}
+            faves={faves}
+            highlight={highlight}
+          />
         </div>
       </section>
       <Footer />

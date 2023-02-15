@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { resultIcon, middleIcon, faveIcon, highlightIcon, middleHighlight } from "../utils/icons";
 import "leaflet/dist/leaflet.css";
@@ -7,7 +7,7 @@ import Routing from "./Routing";
 import UserMarker from "./UserMarker";
 import FaveButton from "./FaveButton";
 
-const Map = ({ userCoordinates, results, isInFaves, faves }) => {
+const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
   const [route, setRoute] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
   const [destination, setDestination] = useState(null);
@@ -27,6 +27,12 @@ const Map = ({ userCoordinates, results, isInFaves, faves }) => {
   const faveCount = (result) => {
     return faves.filter((fave) => fave.id === result.id)[0].faves;
   };
+
+  const isHighlighted = (result) => {
+    return Array.prototype.includes.call(highlight, result);
+  };
+
+  useEffect(() => {}, [highlight]);
 
   return (
     <div className="map-view">
@@ -59,7 +65,9 @@ const Map = ({ userCoordinates, results, isInFaves, faves }) => {
                 icon={fave.isMiddle ? middleIcon : faveIcon}
               >
                 <Popup>
-                  <div>{fave.displayString}</div>
+                  <div>
+                    {fave.name}, {fave.place.properties.street}, {fave.place.properties.postalCode}
+                  </div>
                   <button
                     onClick={() => {
                       handleDirectionsClick(userCoordinates, faveCoordinates);
@@ -86,14 +94,12 @@ const Map = ({ userCoordinates, results, isInFaves, faves }) => {
               <Marker
                 key={index}
                 position={resultCoordinates}
-                icon={(result.isMiddle && result.isHighlight) ? middleHighlight
-                  : result.isMiddle ? middleIcon
-                  : result.isHighlight ? highlightIcon
-                  : isInFaves(result.id) ? faveIcon
-                  : resultIcon}
+                icon={result.isMiddle && isHighlighted(result) ? middleHighlight : result.isMiddle ? middleIcon : isHighlighted(result) ? highlightIcon : isInFaves(result.id) ? faveIcon : resultIcon}
               >
                 <Popup>
-                  <div>{result.displayString}</div>
+                  <div>
+                    {result.name}, {result.place.properties.street}, {result.place.properties.postalCode}
+                  </div>
                   <button
                     onClick={() => {
                       handleDirectionsClick(userCoordinates, resultCoordinates);
