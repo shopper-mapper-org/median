@@ -8,7 +8,9 @@ const Results = ({ results, userQuery, highlight, setHighlight }) => {
   // on mount and on change to results, we find the element to highlight
   useEffect(() => {
     setMiddle(results);
-  }, [userQuery, results]);
+    console.log("userQuery: ", userQuery);
+    console.log("results: ", results);
+  }, [results]);
 
   // whenever we change the highlighted selection, we update results so it links to Map
   useEffect(() => {

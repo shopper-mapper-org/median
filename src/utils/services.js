@@ -13,6 +13,7 @@ const fetchResults = async (query, coordinates, range = 10000) => {
         q: query,
       },
     });
+    setMiddle(res.data.results);
     return res.data.results;
   } catch (err) {
     console.log(err);
@@ -57,6 +58,11 @@ const fetchAddress = async (lat, lon) => {
 
 const setMiddle = (dataArray) => {
   const curIndex = Math.floor(dataArray.length / 2);
+
+  // first set all isMiddles to false
+  dataArray.forEach((data) => {
+    data.isMiddle = false;
+  })
 
   // if we have an odd length array...
   if (dataArray.length > 0 && dataArray.length % 2) {
