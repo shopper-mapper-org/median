@@ -7,6 +7,9 @@ import Footer from "./components/Footer";
 import Results from "./components/Results";
 import Form from "./components/Form";
 import firebase from "./database/firebase";
+import { fetchAddress } from "./utils/services";
+import ErrorPage from "./components/ErrorPage";
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   const [results, setResults] = useState([]);
@@ -39,33 +42,39 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Form
-        setUserCoordinates={setUserCoordinates}
-        userCoordinates={userCoordinates}
-        setResults={setResults}
-        setUserQuery={setUserQuery}
-        locationInput={locationInput}
-        setLocationInput={setLocationInput}
-      />
-      <section className="container">
-        <div className="results-map-container">
-          <Results
-            results={results}
-            userQuery={userQuery}
-            highlight={highlight}
-            setHighlight={setHighlight}
-          />
-          <Map
-            results={results}
-            setResults={setResults}
-            userCoordinates={userCoordinates}
-            userQuery={userQuery}
-            isInFaves={isInFaves}
-            faves={faves}
-            highlight={highlight}
-          />
-        </div>
-      </section>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Form
+              setUserCoordinates={setUserCoordinates}
+              userCoordinates={userCoordinates}
+              setResults={setResults}
+              setUserQuery={setUserQuery}
+              locationInput={locationInput}
+              setLocationInput={setLocationInput}
+            />
+            <section className="container">
+              <div className="results-map-container">
+                <Results
+                  results={results}
+                  userQuery={userQuery}
+                  highlight={highlight}
+                  setHighlight={setHighlight}
+                />
+                <Map
+                  results={results}
+                  setResults={setResults}
+                  userCoordinates={userCoordinates}
+                  userQuery={userQuery}
+                  isInFaves={isInFaves}
+                  faves={faves}
+                />
+              </div>
+            </section> 
+          </>
+        } />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
       <Footer />
     </div>
   );
