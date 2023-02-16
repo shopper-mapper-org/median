@@ -1,8 +1,8 @@
-import L from 'leaflet';
-import 'leaflet-routing-machine';
-import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
-import { useMap } from 'react-leaflet';
-import { useEffect } from 'react';
+import L from "leaflet";
+import "leaflet-routing-machine";
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import { useMap } from "react-leaflet";
+import { useEffect } from "react";
 
 const Routing = ({ route }) => {
   const map = useMap();
@@ -13,10 +13,11 @@ const Routing = ({ route }) => {
     const waypoints = route.locations.map((location) => {
       return L.latLng(+`${location.latLng.lat}`, +`${location.latLng.lng}`);
     });
+
     const routingControl = L.Routing.control({
       waypoints: waypoints,
       routeWhileDragging: false,
-      show: false,
+      show: true,
       createMarker: function () {
         return null;
       },
