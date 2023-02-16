@@ -1,9 +1,27 @@
+@use 'variables' as *;
+
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin-b p {
     margin: 0;
   }
   bottom: 0;
+  background-color: $black;
+  margin-top: 50px;
+
+  a{
+    text-decoration: none;
+    margin-bottom: 20px;
+    color: $coral-pink;
+    transition: 0.2s ease-in-out;
+
+    &:hover,
+    &focus{
+      color: $light-green;
+    }
+  }
 }
+

@@ -1,0 +1,27 @@
+// Scroll Button Partial
+
+@use 'variables' as *;
+
+.scroll-up-button{
+    position: fixed;
+    bottom: 120px;
+    right: 30px;
+    height: 40px;
+    width: 40px;
+    transition: 0.2s ease-in-out;
+    color: $light-green;
+
+    @media (max-width: $mq-medium){
+        right: 5px;
+    }
+
+    @media (max-width: $mq-small){
+        right: 2px;
+        width: 35px;
+    }
+
+    &:hover,
+    &:focus{
+        color: rgba($light-green, 0.7);
+    }
+}

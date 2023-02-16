@@ -130,7 +130,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
             ></input>
           </div>
           <div className="query-container">
-            <label htmlFor="query">Try Searching for an Attraction (e.g Museum, Restaurant, etc..)</label>
+            <label htmlFor="query">Try Searching for an Attraction <span>(e.g Museum, Restaurant, etc..)</span></label>
             <input
               type="text"
               id="query"
