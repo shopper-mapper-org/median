@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { setHighlights } from "../utils/services";
 
-const Results = ({ results, userQuery, highlight, setHighlight }) => {
+const Results = ({ results, userSubmitted, highlight, setHighlight }) => {
   // use ID value of the results array to determine highlighted result & keep it in state
   const [highlightID, setHighlightID] = useState([]);
 
@@ -68,7 +68,7 @@ const Results = ({ results, userQuery, highlight, setHighlight }) => {
               );
             })}
           </select>
-        ) : userQuery && results.length === 0 ? (
+        ) : userSubmitted && results.length === 0 ? (
           <section className="results-error">
             <h3>No Results Found</h3>
             <p>Make sure your search is spelled correctly. Or, try adding more information, like city, province, or postal code.</p>

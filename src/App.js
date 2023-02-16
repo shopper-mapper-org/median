@@ -15,7 +15,7 @@ function App() {
   const [loadAPI, setLoadAPI] = useState(false);
   const [results, setResults] = useState([]);
   const [highlight, setHighlight] = useState([]);
-  const [userQuery, setUserQuery] = useState("");
+  const [userSubmitted, setUserSubmitted] = useState(false);
   const [userCoordinates, setUserCoordinates] = useState([43.648209, -79.397858]);
   const [faves, setFaves] = useState([]);
 
@@ -62,14 +62,14 @@ function App() {
                   setUserCoordinates={setUserCoordinates}
                   userCoordinates={userCoordinates}
                   setResults={setResults}
-                  setUserQuery={setUserQuery}
+                  setUserSubmitted={setUserSubmitted}
                   setLoadAPI={setLoadAPI}
                 />
                 <section className="container">
                   <div className="results-map-container">
                     <Results
                       results={results}
-                      userQuery={userQuery}
+                      userSubmitted={userSubmitted}
                       highlight={highlight}
                       setHighlight={setHighlight}
                     />
@@ -77,7 +77,6 @@ function App() {
                       results={results}
                       setResults={setResults}
                       userCoordinates={userCoordinates}
-                      userQuery={userQuery}
                       isInFaves={isInFaves}
                       faves={faves}
                       highlight={highlight}
