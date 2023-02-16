@@ -42,7 +42,7 @@ const fetchRoute = async (from, to) => {
 const fetchAddress = async (lat, lon) => {
   try {
     const res = await axios({
-      url: "http://www.mapquestapi.com/geocoding/v1/reverse",
+      url: "https://www.mapquestapi.com/geocoding/v1/reverse",
       responseType: "json",
       params: {
         key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
