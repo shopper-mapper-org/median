@@ -1,5 +1,4 @@
 import axios from "axios";
-import Swal from "sweetalert2";
 import { errorAlert } from "./alerts";
 
 const fetchResults = async (query, coordinates, range = 10000) => {
@@ -14,7 +13,8 @@ const fetchResults = async (query, coordinates, range = 10000) => {
         q: query,
       },
     });
-    return res.data.results;
+    const updatedArray = setMiddle(res.data.results);
+    return updatedArray;
   } catch (err) {
     console.log(err);
     errorAlert();
@@ -57,35 +57,45 @@ const fetchAddress = async (lat, lon) => {
 };
 
 const setMiddle = (dataArray) => {
-  const curIndex = Math.floor(dataArray.length / 2);
+  const curArray = [...dataArray];
+  const curIndex = Math.floor(curArray.length / 2);
+
+  // first set all isMiddles to false
+  curArray.forEach((data) => {
+    data.isMiddle = false;
+  });
 
   // if we have an odd length array...
-  if (dataArray.length > 0 && dataArray.length % 2) {
+  if (curArray.length > 0 && curArray.length % 2) {
     // we have 1 value for the middle
-    dataArray[curIndex].isMiddle = true;
-  } else if (dataArray.length > 0) {
+    curArray[curIndex].isMiddle = true;
+  } else if (curArray.length > 0) {
     // otherwise, we have an even length array & we have 2 values for the middle
-    dataArray[curIndex].isMiddle = true;
-    dataArray[curIndex - 1].isMiddle = true;
+    curArray[curIndex].isMiddle = true;
+    curArray[curIndex - 1].isMiddle = true;
   }
+
+  return curArray;
 };
 
 const setHighlights = (dataArray, highlightArray) => {
+  const curArray = [...dataArray];
 
   // reset all highlights
-  dataArray.forEach((data) => {
-    data.isHighlight=false;
-  })
+  curArray.forEach((data) => {
+    data.isHighlight = false;
+  });
 
   // go through data
-  dataArray.forEach((data) => {
+  curArray.forEach((data) => {
     // if data matches the ID in highlight, set isHighlight
     highlightArray.forEach((highlight) => {
       if (data.id === highlight.id) {
         data.isHighlight = true;
       }
-    })
-  })
-}
+    });
+  });
+  return curArray;
+};
 
 export { fetchResults, fetchRoute, fetchAddress, setMiddle, setHighlights };

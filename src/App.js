@@ -37,30 +37,6 @@ function App() {
       }
       setFaves(arr);
     });
-    // geolocation
-    const locationContainer = document.querySelector("#location");
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        // set user coordinates
-        const geoLatitude = pos.coords.latitude;
-        const geoLongitude = pos.coords.longitude;
-        setUserCoordinates([geoLatitude, geoLongitude]);
-        // set user location using coordinates
-        const getAddress = async () => {
-          const fetchedAddress = await fetchAddress(geoLatitude, geoLongitude);
-          setLocationInput(fetchedAddress);
-          const psLocation = window.placeSearch({
-            key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
-            container: locationContainer,
-            useDeviceLocation: true,
-          });
-          psLocation.setVal(fetchedAddress);
-        };
-        getAddress();
-      });
-    } else {
-      console.log("no geolocation");
-    }
   }, []);
 
   return (

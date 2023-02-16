@@ -1,10 +1,10 @@
 import Swal from "sweetalert2";
 
-const errorAlert = () => {
+const errorAlert = (string = "Request Failed ☹️") => {
   return Swal.fire({
     icon: "error",
     title: "Oops...",
-    text: "Request Failed ☹️",
+    text: string,
   });
 };
 
