@@ -86,8 +86,6 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
   const handleGeolocationClick = () => {
     // geolocation
     if ("geolocation" in navigator) {
-      // set loading
-
       // then set location based on device location
       navigator.geolocation.getCurrentPosition(
         (pos) => {
@@ -97,11 +95,12 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
           setUserCoordinates([geoLatitude, geoLongitude]);
           // set user location using coordinates
           const getAddress = async () => {
-            setLoadAPI(true);
+            // set loading
+            // setLoadAPI(true);
             const fetchedAddress = await fetchAddress(geoLatitude, geoLongitude);
-            console.log(fetchedAddress);
             psLocation.setVal(fetchedAddress);
-            setLoadAPI(false); // done loading!
+            setLocationInput(fetchedAddress);
+            // setLoadAPI(false); // done loading!
           };
           getAddress();
         },
