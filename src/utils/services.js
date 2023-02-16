@@ -1,5 +1,5 @@
 import axios from "axios";
-import { errorAlert } from "./alerts";
+import { errorAlert, errorPopup } from "./alerts";
 
 const fetchResults = async (query, coordinates, range = 10000) => {
   try {
@@ -16,8 +16,8 @@ const fetchResults = async (query, coordinates, range = 10000) => {
     const updatedArray = setMiddle(res.data.results);
     return updatedArray;
   } catch (err) {
-    console.log(err);
-    errorAlert();
+    errorPopup(err.response.status);
+    return [];
   }
 };
 
@@ -35,7 +35,7 @@ const fetchRoute = async (from, to) => {
     return res.data.route;
   } catch (err) {
     console.log(err);
-    errorAlert();
+    errorAlert("Route not found");
   }
 };
 
