@@ -11,6 +11,7 @@ import ErrorPage from "./components/ErrorPage";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
+  const [loadAPI, setLoadAPI] = useState(false);
   const [results, setResults] = useState([]);
   const [highlight, setHighlight] = useState([]);
   const [userQuery, setUserQuery] = useState("");
@@ -24,6 +25,9 @@ function App() {
   };
 
   useEffect(() => {
+    // we're loading!
+    setLoadAPI(true);
+
     // firebase setup
     const database = getDatabase(firebase);
     const favesRef = ref(database, "favourites");
@@ -35,12 +39,21 @@ function App() {
         arr.push({ key, ...data[key] });
       }
       setFaves(arr);
+
+      // done loading
+      setLoadAPI(false);
     });
   }, []);
 
   return (
     <div className="App">
       <Header />
+      { loadAPI ? (
+      <div className="loader-container">
+        <div className="load-animation"></div>
+      </div> )
+      :
+      ( 
       <Routes>
         <Route
           path="/"
@@ -53,6 +66,7 @@ function App() {
                 setUserQuery={setUserQuery}
                 locationInput={locationInput}
                 setLocationInput={setLocationInput}
+                setLoadAPI={setLoadAPI}
               />
               <section className="container">
                 <div className="results-map-container">
@@ -80,7 +94,7 @@ function App() {
           path="*"
           element={<ErrorPage />}
         />
-      </Routes>
+      </Routes> )}
       <Footer />
     </div>
   );
