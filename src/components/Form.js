@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { fetchResults, fetchAddress } from "../utils/services";
 import { errorAlert } from "../utils/alerts";
 
-const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, locationInput, setLocationInput, setLoadAPI }) => {
+const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, setLoadAPI }) => {
   const [queryInput, setQueryInput] = useState("");
+  const [locationInput, setLocationInput] = useState("");
   // const [userSubmit, setUserSubmit] = useState("");
 
   const formRef = useRef(null);
@@ -46,13 +47,13 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleLocInput = (event) => {
-    setLocationInput(event.target.value);
-  };
+  // const handleLocInput = (event) => {
+  //   setLocationInput(event.target.value);
+  // };
 
-  const handleQueryInput = (event) => {
-    setQueryInput(event.target.value);
-  };
+  // const handleQueryInput = (event) => {
+  //   setQueryInput(event.target.value);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -127,8 +128,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
               type="text"
               id="location"
               placeholder="Enter Location"
-              value={locationInput}
-              onChange={handleLocInput}
+              defaultValue={locationInput}
               required
             ></input>
           </div>
@@ -138,8 +138,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
               type="text"
               id="query"
               placeholder="Enter Attraction"
-              value={queryInput}
-              onChange={handleQueryInput}
+              defaultValue={queryInput}
               required
             ></input>
           </div>

@@ -17,7 +17,6 @@ function App() {
   const [userQuery, setUserQuery] = useState("");
   const [userCoordinates, setUserCoordinates] = useState([43.648209, -79.397858]);
   const [faves, setFaves] = useState([]);
-  const [locationInput, setLocationInput] = useState("");
 
   const isInFaves = (id) => {
     const res = faves.some((fave) => fave.id === id);
@@ -48,53 +47,51 @@ function App() {
   return (
     <div className="App">
       <Header />
-      { loadAPI ? (
-      <div className="loader-container">
-        <div className="load-animation"></div>
-      </div> )
-      :
-      ( 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Form
-                setUserCoordinates={setUserCoordinates}
-                userCoordinates={userCoordinates}
-                setResults={setResults}
-                setUserQuery={setUserQuery}
-                locationInput={locationInput}
-                setLocationInput={setLocationInput}
-                setLoadAPI={setLoadAPI}
-              />
-              <section className="container">
-                <div className="results-map-container">
-                  <Results
-                    results={results}
-                    userQuery={userQuery}
-                    highlight={highlight}
-                    setHighlight={setHighlight}
-                  />
-                  <Map
-                    results={results}
-                    setResults={setResults}
-                    userCoordinates={userCoordinates}
-                    userQuery={userQuery}
-                    isInFaves={isInFaves}
-                    faves={faves}
-                    highlight={highlight}
-                  />
-                </div>
-              </section>
-            </>
-          }
-        />
-        <Route
-          path="*"
-          element={<ErrorPage />}
-        />
-      </Routes> )}
+      {loadAPI ? (
+        <div className="loader-container">
+          <div className="load-animation"></div>
+        </div>
+      ) : (
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Form
+                  setUserCoordinates={setUserCoordinates}
+                  userCoordinates={userCoordinates}
+                  setResults={setResults}
+                  setUserQuery={setUserQuery}
+                  setLoadAPI={setLoadAPI}
+                />
+                <section className="container">
+                  <div className="results-map-container">
+                    <Results
+                      results={results}
+                      userQuery={userQuery}
+                      highlight={highlight}
+                      setHighlight={setHighlight}
+                    />
+                    <Map
+                      results={results}
+                      setResults={setResults}
+                      userCoordinates={userCoordinates}
+                      userQuery={userQuery}
+                      isInFaves={isInFaves}
+                      faves={faves}
+                      highlight={highlight}
+                    />
+                  </div>
+                </section>
+              </>
+            }
+          />
+          <Route
+            path="*"
+            element={<ErrorPage />}
+          />
+        </Routes>
+      )}
       <Footer />
     </div>
   );
