@@ -5,11 +5,6 @@ const Results = ({ results, userQuery, highlight, setHighlight }) => {
   // use ID value of the results array to determine highlighted result & keep it in state
   const [highlightID, setHighlightID] = useState([]);
 
-  // on mount and on change to results, we find the element to highlight
-  // useEffect(() => {
-  //   setMiddle(results);
-  // }, [results]);
-
   // whenever we change the highlighted selection, we update results so it links to Map
   useEffect(() => {
     setHighlights(results, highlight);
@@ -53,7 +48,7 @@ const Results = ({ results, userQuery, highlight, setHighlight }) => {
             id="results-select"
             multiple
             defaultValue={highlightID}
-            size={results.length}
+            //size={results.length} //{(results.length > 12) ? "12" : results.length}
             onChange={handleSelect}
           >
             {results.map((result) => {
@@ -75,7 +70,7 @@ const Results = ({ results, userQuery, highlight, setHighlight }) => {
           </section>
         ) : (
           <section className="results-error">
-            <p>Please input search terms</p>
+            <p>Please input search terms above</p>
           </section>
         )}
       </div>

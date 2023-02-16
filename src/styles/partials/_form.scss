@@ -35,12 +35,14 @@
   }
       
   label {
-      @media (max-width: $mq-ipad) {
-          display: flex;
-          flex-direction: column;
-          text-align: center;
-      }   
-  }
+    line-height: 25px;
+
+    @media (max-width: $mq-ipad) {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }   
+}
 
   span{
       @media (max-width: $mq-ipad) {
