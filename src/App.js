@@ -9,6 +9,7 @@ import Form from "./components/Form";
 import firebase from "./database/firebase";
 
 function App() {
+  const [loadAPI, setLoadAPI] = useState(false);
   const [results, setResults] = useState([]);
   const [highlight, setHighlight] = useState([]);
   const [userQuery, setUserQuery] = useState("");
@@ -22,6 +23,9 @@ function App() {
   };
 
   useEffect(() => {
+    // we're loading!
+    setLoadAPI(true);
+
     // firebase setup
     const database = getDatabase(firebase);
     const favesRef = ref(database, "favourites");
@@ -33,39 +37,50 @@ function App() {
         arr.push({ key, ...data[key] });
       }
       setFaves(arr);
+
+      // done loading
+      setLoadAPI(false);
     });
   }, []);
 
   return (
     <div className="App">
       <Header />
-      <Form
-        setUserCoordinates={setUserCoordinates}
-        userCoordinates={userCoordinates}
-        setResults={setResults}
-        setUserQuery={setUserQuery}
-        locationInput={locationInput}
-        setLocationInput={setLocationInput}
-      />
-      <section className="container">
-        <div className="results-map-container">
-          <Results
-            results={results}
-            userQuery={userQuery}
-            highlight={highlight}
-            setHighlight={setHighlight}
-          />
-          <Map
-            results={results}
-            setResults={setResults}
-            userCoordinates={userCoordinates}
-            userQuery={userQuery}
-            isInFaves={isInFaves}
-            faves={faves}
-            highlight={highlight}
-          />
-        </div>
-      </section>
+      { loadAPI ? (
+      <div className="loader-container">
+        <div className="load-animation"></div>
+      </div> )
+      :
+      ( <>
+        <Form
+          setUserCoordinates={setUserCoordinates}
+          userCoordinates={userCoordinates}
+          setResults={setResults}
+          setUserQuery={setUserQuery}
+          locationInput={locationInput}
+          setLocationInput={setLocationInput}
+          setLoadAPI={setLoadAPI}
+        />
+        <section className="container">
+          <div className="results-map-container">
+            <Results
+              results={results}
+              userQuery={userQuery}
+              highlight={highlight}
+              setHighlight={setHighlight}
+            />
+            <Map
+              results={results}
+              setResults={setResults}
+              userCoordinates={userCoordinates}
+              userQuery={userQuery}
+              isInFaves={isInFaves}
+              faves={faves}
+              highlight={highlight}
+            />
+          </div>
+        </section>
+      </> )}
       <Footer />
     </div>
   );

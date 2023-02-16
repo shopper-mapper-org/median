@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { resultIcon, middleIcon, faveIcon, highlightIcon, middleHighlight } from "../utils/icons";
 import "leaflet/dist/leaflet.css";
@@ -13,6 +13,9 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
   const [destination, setDestination] = useState(null);
   const [showFaves, setShowFaves] = useState(false);
 
+  // define useRefs to release focus on button clicks
+  const backResultsRef = useRef(null);
+
   const handleDirectionsClick = async (userCoords, resultCoords) => {
     const fetchedRoute = await fetchRoute(userCoords, resultCoords);
     setRoute(fetchedRoute);
@@ -22,6 +25,9 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
   const handleBackToResultsClick = () => {
     setShowRoute(false);
     setDestination(null);
+
+    // remove focus from button after click
+    backResultsRef.current.blur();
   };
 
   const faveCount = (result) => {
@@ -40,6 +46,7 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
       <button
         className="map-view-button"
         onClick={handleBackToResultsClick}
+        ref={backResultsRef}
       >
         Back to results
       </button>
