@@ -4,6 +4,10 @@
 
 html{
     font-size: 125%;
+
+    @media (max-width: $mq-small) {
+        font-size: 100%;
+    }
 }
 
 body{
@@ -25,4 +29,13 @@ h1 {
 
 input{
     font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+label{
+    line-height: 25px;
+}
+
+footer a{
+    font-size: 0.8rem;
 }

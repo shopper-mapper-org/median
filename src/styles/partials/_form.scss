@@ -12,39 +12,55 @@
     .query-container{
         max-width: 800px;
         width: 80%;
+    }
 
-        input{
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 5px solid rgba(255, 255, 255, 0.3);
+    input{
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 5px solid rgba(255, 255, 255, 0.3);
 
-            &::placeholder{
-                opacity: 0.2;
+        &::placeholder{
+            opacity: 0.2;
+
+            @media (max-width: $mq-ipad) {
+                text-align: center;
             }
         }
     }
+        
+    label {
+        @media (max-width: $mq-ipad) {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }   
+    }
 
-    .button-container{
-        button{
-            width: 180px;
-            height: 50px;
-            background-color: $light-green;
-            border-radius: 16px;
-            margin-top: 15px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            transition: 0.1s ease-in;
-
-            &:hover,
-            &:focus{
-                transform: scale(1.05);
-                background-color: rgba($light-green, 0.7);
-            }
+    span{
+        @media (max-width: $mq-ipad) {
+            display: block;
         }
     }
+
+    button{
+        width: 180px;
+        height: 50px;
+        background-color: $light-green;
+        border-radius: 16px;
+        margin-top: 15px;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        transition: 0.1s ease-in;
+
+        &:hover,
+        &:focus{
+            transform: scale(1.05);
+            background-color: rgba($light-green, 0.7);
+        }
+    }   
 }

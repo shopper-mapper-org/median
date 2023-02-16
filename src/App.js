@@ -8,6 +8,7 @@ import Results from "./components/Results";
 import Form from "./components/Form";
 import firebase from "./database/firebase";
 import ErrorPage from "./components/ErrorPage";
+import ScrollToTop from "./components/ScrollToTop";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -93,6 +94,7 @@ function App() {
         </Routes>
       )}
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
