@@ -66,6 +66,7 @@ function App() {
                 setUserQuery={setUserQuery}
                 locationInput={locationInput}
                 setLocationInput={setLocationInput}
+                setLoadAPI={setLoadAPI}
               />
               <section className="container">
                 <div className="results-map-container">
@@ -82,6 +83,7 @@ function App() {
                     userQuery={userQuery}
                     isInFaves={isInFaves}
                     faves={faves}
+                    highlight={highlight}
                   />
                 </div>
               </section>

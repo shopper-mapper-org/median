@@ -34,7 +34,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
     });
     psQuery.on("change", (e) => {
       console.log(e);
-      setUserQuery(e.result.value);
+      setQueryInput(e.result.value);
       psQuery.setVal(e.result.value);
       psQuery.close();
     });
@@ -54,6 +54,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setUserQuery(queryInput);
 
     // set loading state
     setLoadAPI(true);
