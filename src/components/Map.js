@@ -76,6 +76,7 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
                     {fave.name}, {fave.place.properties.street}, {fave.place.properties.postalCode}
                   </div>
                   <button
+                    className="directions-button"
                     onClick={() => {
                       handleDirectionsClick(userCoordinates, faveCoordinates);
                       setDestination(fave);
@@ -108,6 +109,7 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
                     {result.name}, {result.place.properties.street}, {result.place.properties.postalCode}
                   </div>
                   <button
+                    className="directions-button"
                     onClick={() => {
                       handleDirectionsClick(userCoordinates, resultCoordinates);
                       setDestination(result);
@@ -143,7 +145,7 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
           </>
         )}
       </MapContainer>
-      <label>
+      <label className="fav-tab">
         <input
           type="checkbox"
           value={showFaves}
