@@ -69,6 +69,7 @@ function App() {
                     userQuery={userQuery}
                     isInFaves={isInFaves}
                     faves={faves}
+                    highlight={highlight}
                   />
                 </div>
               </section>
