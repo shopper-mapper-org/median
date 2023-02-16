@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { fetchResults, fetchAddress } from "../utils/services";
 import { errorAlert } from "../utils/alerts";
 
-const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, locationInput, setLocationInput }) => {
+const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, locationInput, setLocationInput, setLoadAPI }) => {
   const [queryInput, setQueryInput] = useState("");
   // const [userSubmit, setUserSubmit] = useState("");
+
+  // set button refs to reset focus after click
+  const searchButtonRef = useRef(null);
+  const gpsButtonRef = useRef(null);
 
   useEffect(() => {
     const psLocation = window.placeSearch({
@@ -50,18 +54,29 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // set loading state
+    setLoadAPI(true);
     // setUserSubmit(locationInput);
     const getResults = async () => {
       const fetchedResults = await fetchResults(queryInput, userCoordinates);
       setResults(fetchedResults);
+      setLoadAPI(false);  // done loading!
     };
     getResults();
+
+    // and remove focus
+    searchButtonRef.current.blur();
   };
 
   const handleGeolocationClick = () => {
     // geolocation
     const locationContainer = document.querySelector("#location");
     if ("geolocation" in navigator) {
+      // set loading
+      setLoadAPI(true);
+
+      // then set location based on device location
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           // set user coordinates
@@ -78,6 +93,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
               useDeviceLocation: true,
             });
             psLocation.setVal(fetchedAddress);
+            setLoadAPI(false); // done loading!
           };
           getAddress();
         },
@@ -88,6 +104,9 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
     } else {
       errorAlert("No geolocation object found");
     }
+
+    // and remove focus
+    gpsButtonRef.current.blur();
   };
 
   return (
@@ -121,10 +140,11 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
             ></input>
           </div>
           <div className="button-container">
-            <button type="submit">Search</button>
+            <button type="submit" ref={searchButtonRef}>Search</button>
             <button
               type="button"
               onClick={handleGeolocationClick}
+              ref={gpsButtonRef}
             >
               Use GPS location
             </button>
