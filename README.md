@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# Median (built by team at Shopper Mapper)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tired of being bombarded with recommendations for the latest, trendiest hotspots? We understand that sometimes all you crave is a familiar haunt, a cozy nook that feels like home. That's why we're on a mission to simplify the decision-making process and help you discover those reliable, down-to-earth gems that never fail to hit the spot. Whether it's a restaurant, bar, grocery store, or coffee shop, we've got you covered with the inside scoop on the places that will feel like a warm embrace. Let us help you uncover the hidden treasures that will quickly become your go-to spots.
 
-## Available Scripts
+![image of app](home.png)
 
-In the project directory, you can run:
+[Live Site](https://median-mapper.netlify.app/)
 
-### `npm start`
+> Project developed by Shopper Mapper team, arranged by Juno College
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Table of contents
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Overview](#overview)
+  - [The Goal](#the-goal)
+  - [Deliverables](#deliverables)
+  - [Screenshots](#screenshots)
+  - [Built With](#built-with)
+- [Contributors](#contributors)
+- [License](#license)
 
-### `npm test`
+## Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### The Goal
 
-### `npm run build`
+Our goal was to craft a complete end-to-end solution that fulfilled the client's vision, all while working as part of a team. Throughout the project, we honed our expertise in React's fundamental concepts, organized seamless collaboration among developers, and executed to deliver a fully functional product that exceeded expectations.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Deliverables
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Use the MapQuest API.
+- A user should be able to use their current location or input a location as a base starting point.
+- The user should be able to type in a query (e.g. clothing, museums, coffee shop, bar, etc.).
+- Users can see every instance of that query within 10km of the base location ordered by relevance.
+  The middle location of the returned list should be highlighted. (If it’s an even number, the middle two.).
+- The user should be able to choose a returned destination and get directions from the base location to that destination.
+- Proper error handling. For example:
+  - If a user types in a query that yields no result - they should be provided feedback (e.g. there were no results found).
+- Common error responses should be handled.
+- API loading states.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Screenshots
 
-### `npm run eject`
+![Image 1](one.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Image 2](two.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Built With
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- React.js
+- MapQuest SDKs
+- Leaflet
+- Firebase
+- git/Github
+- VS Code live-share extension
+- Trello
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Contributors
 
-## Learn More
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/graydonj"
+          ><img
+            src="https://avatars.githubusercontent.com/u/116847252?v=4"
+            width="100px;"
+            alt="Graydon James"
+          /><br /><sub><b>Graydon James</b></sub></a
+        ><br /><a
+          href="https://graydongames.com"
+          title="graydongames.com"
+          >🖥️</a
+        >
+        <a
+          href="mailto:graydonj2@gmail.com"
+          title="email Graydon"
+          >✉️</a
+        >
+      </td>
+      <td align="center">
+        <a href="https://github.com/Maktastix"
+          ><img
+            src="https://avatars.githubusercontent.com/u/114128362?v=4"
+            width="100px;"
+            alt="Michael Makinde"
+          /><br /><sub><b>Michael Makinde</b></sub></a
+        ><br /><a
+          href="https://michaelmakinde.com"
+          title="michaelmakinde.com"
+          >🖥️</a
+        >
+        <a
+          href="mailto:michael_makinde@outlook.com"
+          title="email Michael"
+          >✉️</a
+        >
+      </td>
+      <td align="center">
+        <a href="https://github.com/johnmal-dev"
+          ><img
+            src="https://avatars.githubusercontent.com/u/56036354?v=4"
+            width="100px;"
+            alt="John Malapit"
+          /><br /><sub><b>John Malapit</b></sub></a
+        ><br /><a
+          href="https://www.johnmal.dev"
+          title="johnmal.dev"
+          >🖥️</a
+        >
+        <a
+          href="mailto:johncmalapit@gmail.com"
+          title="email John"
+          >✉️</a
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT License
+Copyright (c) 2023 Graydon James, Michael Makinde & John Malapit
