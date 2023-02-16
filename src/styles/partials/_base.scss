@@ -10,3 +10,9 @@
 body{
   background-color: $bg-color;
 }
+
+input[type="checkbox"] {
+  cursor: pointer;
+  appearance: none;
+  color: $black;
+}
