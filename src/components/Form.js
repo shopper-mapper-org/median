@@ -6,6 +6,8 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
   const [queryInput, setQueryInput] = useState("");
   // const [userSubmit, setUserSubmit] = useState("");
 
+  const formRef = useRef(null);
+
   // set button refs to reset focus after click
   const searchButtonRef = useRef(null);
   const gpsButtonRef = useRef(null);
@@ -13,7 +15,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
   useEffect(() => {
     const psLocation = window.placeSearch({
       key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
-      container: document.querySelector("#location"),
+      container: formRef.current.querySelector("#location"),
       useDeviceLocation: true,
     });
     psLocation.on("change", (e) => {
@@ -28,7 +30,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
     });
     const psQuery = window.placeSearch({
       key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
-      container: document.querySelector("#query"),
+      container: formRef.current.querySelector("#query"),
       useDeviceLocation: true,
       collection: ["category", "franchise"],
     });
@@ -62,7 +64,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
     const getResults = async () => {
       const fetchedResults = await fetchResults(queryInput, userCoordinates);
       setResults(fetchedResults);
-      setLoadAPI(false);  // done loading!
+      setLoadAPI(false); // done loading!
     };
     getResults();
 
@@ -117,6 +119,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
         <form
           className="form-container"
           onSubmit={handleSubmit}
+          ref={formRef}
         >
           <div className="location-container">
             <label htmlFor="location">Enter your Location or Starting Point</label>
@@ -141,7 +144,12 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserQuery, l
             ></input>
           </div>
           <div className="button-container">
-            <button type="submit" ref={searchButtonRef}>Search</button>
+            <button
+              type="submit"
+              ref={searchButtonRef}
+            >
+              Search
+            </button>
             <button
               type="button"
               onClick={handleGeolocationClick}
