@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { Routes, Route } from "react-router-dom";
 import firebase from "./database/firebase";
@@ -14,20 +14,10 @@ import ScrollToTop from "./components/ScrollToTop";
 import Loader from "./components/Loader";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import { AppContext } from "./components/context/AppContext";
 
 function App() {
-  const [loadAPI, setLoadAPI] = useState(false);
-  const [results, setResults] = useState([]);
-  const [highlight, setHighlight] = useState([]);
-  const [userSubmitted, setUserSubmitted] = useState(false);
-  const [userCoordinates, setUserCoordinates] = useState([43.648209, -79.397858]);
-  const [faves, setFaves] = useState([]);
-  const [showFaves, setShowFaves] = useState(false);
-
-  const isInFaves = (id) => {
-    const res = faves.some((fave) => fave.id === id);
-    return res;
-  };
+  const { loadAPI, setLoadAPI, setFaves } = useContext(AppContext);
 
   useEffect(() => {
     // we're loading!
@@ -48,58 +38,41 @@ function App() {
       // done loading
       setLoadAPI(false);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="App">
       <NavBar />
       <Header />
-      {loadAPI ? (
-        <Loader />
-      ) : null}
+      {loadAPI ? <Loader /> : null}
       <Routes>
         <Route
           path="/"
           element={
             <>
-              <Form
-                setUserCoordinates={setUserCoordinates}
-                userCoordinates={userCoordinates}
-                setResults={setResults}
-                setUserSubmitted={setUserSubmitted}
-                setLoadAPI={setLoadAPI}
-              />
+              <Form />
               <section className="container">
                 <div className="results-map-container">
-                  <Results
-                    results={results}
-                    userSubmitted={userSubmitted}
-                    highlight={highlight}
-                    setHighlight={setHighlight}
-                    faves={faves}
-                    showFaves={showFaves}
-                    setShowFaves={setShowFaves}
-                  />
-                  <Map
-                    results={results}
-                    setResults={setResults}
-                    userCoordinates={userCoordinates}
-                    isInFaves={isInFaves}
-                    faves={faves}
-                    highlight={highlight}
-                    showFaves={showFaves}
-                    setShowFaves={setShowFaves}
-                  />
+                  <Results />
+                  <Map />
                 </div>
               </section>
             </>
           }
         />
-        <Route path="/About" element={<About/>}/>
-        <Route path="/Contact" element={
-          <div className="contact-only">
-            <Contact/>
-          </div>}/>
+        <Route
+          path="/About"
+          element={<About />}
+        />
+        <Route
+          path="/Contact"
+          element={
+            <div className="contact-only">
+              <Contact />
+            </div>
+          }
+        />
         <Route
           path="*"
           element={<ErrorPage />}

@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { setHighlights } from "../utils/services";
+import { AppContext } from "./context/AppContext";
 
-const Results = ({ results, userSubmitted, highlight, setHighlight, faves, showFaves, setShowFaves }) => {
+const Results = () => {
+  const { results, userSubmitted, highlight, setHighlight, faves, showFaves, setShowFaves } = useContext(AppContext);
   // use ID value of the results array to determine highlighted result & keep it in state
   const [highlightID, setHighlightID] = useState([]);
 
@@ -64,15 +66,16 @@ const Results = ({ results, userSubmitted, highlight, setHighlight, faves, showF
           >
             {faves.map((fave) => {
               return (
-                <option key={fave.id} value={fave.id}>
+                <option
+                  key={fave.id}
+                  value={fave.id}
+                >
                   {fave.name}, {fave.place.properties.street}, {fave.place.properties.postalCode}
                 </option>
-                
-              )
+              );
             })}
           </select>
-        )
-        : results.length > 0 ? (
+        ) : results.length > 0 ? (
           <select
             name="results-select"
             id="results-select"
@@ -109,7 +112,7 @@ const Results = ({ results, userSubmitted, highlight, setHighlight, faves, showF
           value={showFaves}
           onChange={() => setShowFaves(!showFaves)}
         />{" "}
-        Show {(showFaves) ? "Results" : "Faves"}
+        Show {showFaves ? "Results" : "Faves"}
       </label>
     </div>
   );

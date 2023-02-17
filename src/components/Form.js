@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { fetchResults, fetchAddress } from "../utils/services";
 import { errorAlert } from "../utils/alerts";
+import { AppContext } from "./context/AppContext";
 
-const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitted, setLoadAPI }) => {
+const Form = () => {
+  const { setUserCoordinates, setResults, userCoordinates, setUserSubmitted, setLoadAPI } = useContext(AppContext);
+
   const [queryInput, setQueryInput] = useState("");
   const [locationInput, setLocationInput] = useState("");
 

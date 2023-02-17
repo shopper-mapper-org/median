@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { resultIcon, middleIcon, faveIcon, highlightIcon, middleHighlight, faveHighlight } from "../utils/icons";
 import "leaflet/dist/leaflet.css";
@@ -7,8 +7,10 @@ import Routing from "./Routing";
 import UserMarker from "./UserMarker";
 import FaveButton from "./FaveButton";
 import SetView from "./SetView";
+import { AppContext } from "./context/AppContext";
 
-const Map = ({ userCoordinates, results, isInFaves, faves, highlight, showFaves, setShowFaves }) => {
+const Map = () => {
+  const { userCoordinates, results, faves, highlight, showFaves, setShowFaves } = useContext(AppContext);
   const [route, setRoute] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
   const [destination, setDestination] = useState(null);
@@ -39,7 +41,10 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight, showFaves,
     return Array.prototype.includes.call(highlight, result);
   };
 
-  useEffect(() => {}, [highlight]);
+  const isInFaves = (id) => {
+    const res = faves.some((fave) => fave.id === id);
+    return res;
+  };
 
   return (
     <div className="map-view">
