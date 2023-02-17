@@ -7,7 +7,9 @@ import { locationIcon } from "../utils/icons";
 const UserMarker = ({ userCoordinates, zoom = 12 }) => {
   const map = useMap();
   useEffect(() => {
-    map.setView(userCoordinates, zoom);
+    map.setView(userCoordinates, zoom, {
+      animate: true,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userCoordinates]);
   return (
