@@ -6,6 +6,7 @@ import { fetchRoute } from "../utils/services";
 import Routing from "./Routing";
 import UserMarker from "./UserMarker";
 import FaveButton from "./FaveButton";
+import SetView from "./SetView";
 
 const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
   const [route, setRoute] = useState([]);
@@ -144,6 +145,7 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
             </Marker>
           </>
         )}
+        <SetView coords={userCoordinates} />
       </MapContainer>
       <label className="fav-tab">
         <input
