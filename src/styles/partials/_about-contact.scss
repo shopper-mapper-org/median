@@ -1,0 +1,77 @@
+@use 'variables' as *;
+
+.about,
+.about-team {
+  padding-bottom: 30px;
+
+  h2 {
+    text-shadow: 0px 0px 10px $light-green, 0px 0px 50px $black, 0px 0px 100px $aqua-blue;
+  }
+}
+
+.team-container {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  gap: 50px;
+
+  @media (max-width: $mq-small) {
+    gap: 20px;
+  }
+
+  @media (max-width: $mq-big-mobile) {
+    gap: 12px;
+  }
+}
+
+.team-member {
+  border: 2px dotted rgba($light-green, 0.8);
+  border-radius: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+
+  @media (max-width: $mq-small) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @media (max-width: $mq-mobile) {
+    padding: 5px;
+    padding-top: 0px;
+  }
+}
+
+.team-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 2rem;
+
+  a {
+    text-decoration: none;
+    text-shadow: 0px 0px 5px $black;
+    color: $white;
+
+    :hover,
+    :focus {
+      color: rgba($light-green, 0.8);
+      text-shadow: 0px 0px 20px $aqua-blue;
+    }
+  }
+
+  a p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.5rem;
+  }
+
+  @media (max-width: $mq-small) {
+    gap: 10px;
+  }
+}
