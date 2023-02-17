@@ -96,7 +96,10 @@ function App() {
           }
         />
         <Route path="/About" element={<About/>}/>
-        <Route path="/Contact" element={<Contact/>}/>
+        <Route path="/Contact" element={
+          <div className="contact-only">
+            <Contact/>
+          </div>}/>
         <Route
           path="*"
           element={<ErrorPage />}
