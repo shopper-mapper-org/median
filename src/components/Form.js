@@ -5,6 +5,7 @@ import { AppContext } from "./context/AppContext";
 
 const Form = () => {
   const { setUserCoordinates, setResults, userCoordinates, setUserSubmitted, setLoadAPI } = useContext(AppContext);
+  import RangeInput from "./RangeInput";
 
   const [queryInput, setQueryInput] = useState("");
   const [locationInput, setLocationInput] = useState("");
@@ -78,7 +79,7 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setUserSubmitted(true);
-    
+
     if (!autoCoords) {
       // we need to get the user coordinates
       const getCoords = async () => {
@@ -98,11 +99,10 @@ const Form = () => {
           psLocation.setVal("");
         }
         setLoadAPI(false);
-      }
+      };
 
       getCoords();
     } else {
-
       const getResults = async () => {
         // set loading state
         setLoadAPI(true);
@@ -194,6 +194,7 @@ const Form = () => {
               required
             ></input>
           </div>
+          <RangeInput />
           <div className="button-container">
             <button
               type="submit"
