@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { setHighlights } from "../utils/services";
 
-const Results = ({ results, userSubmitted, highlight, setHighlight }) => {
+const Results = ({ results, userSubmitted, highlight, setHighlight, faves, showFaves, setShowFaves }) => {
   // use ID value of the results array to determine highlighted result & keep it in state
   const [highlightID, setHighlightID] = useState([]);
 
   // whenever we change the highlighted selection, we update results so it links to Map
   useEffect(() => {
-    setHighlights(results, highlight);
+    if (showFaves) {
+      setHighlights(faves, highlight);
+    } else {
+      setHighlights(results, highlight);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [highlight]);
 
@@ -24,11 +28,19 @@ const Results = ({ results, userSubmitted, highlight, setHighlight }) => {
       curHighlightID.push(option.value);
 
       // match the selected option to our results and push it into our highlighted results
-      results.forEach((result) => {
-        if (result.id === option.value) {
-          curHighlight.push(result);
-        }
-      });
+      if (showFaves && faves.length > 0) {
+        faves.forEach((fave) => {
+          if (fave.id === option.value) {
+            curHighlight.push(fave);
+          }
+        });
+      } else {
+        results.forEach((result) => {
+          if (result.id === option.value) {
+            curHighlight.push(result);
+          }
+        });
+      }
     });
 
     // set our state
@@ -42,13 +54,30 @@ const Results = ({ results, userSubmitted, highlight, setHighlight }) => {
         <h2>Results</h2>
       </label>
       <div className="results">
-        {results.length > 0 ? (
+        {showFaves && faves.length > 0 ? (
           <select
             name="results-select"
             id="results-select"
             multiple
             defaultValue={highlightID}
-            //size={results.length} //{(results.length > 12) ? "12" : results.length}
+            onChange={handleSelect}
+          >
+            {faves.map((fave) => {
+              return (
+                <option key={fave.id} value={fave.id}>
+                  {fave.name}, {fave.place.properties.street}, {fave.place.properties.postalCode}
+                </option>
+                
+              )
+            })}
+          </select>
+        )
+        : results.length > 0 ? (
+          <select
+            name="results-select"
+            id="results-select"
+            multiple
+            defaultValue={highlightID}
             onChange={handleSelect}
           >
             {results.map((result) => {
@@ -74,6 +103,14 @@ const Results = ({ results, userSubmitted, highlight, setHighlight }) => {
           </section>
         )}
       </div>
+      <label className="fav-tab">
+        <input
+          type="checkbox"
+          value={showFaves}
+          onChange={() => setShowFaves(!showFaves)}
+        />{" "}
+        Show {(showFaves) ? "Results" : "Faves"}
+      </label>
     </div>
   );
 };
