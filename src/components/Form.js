@@ -88,13 +88,13 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
     setLoadAPI(true);
 
     // geolocation
-    console.log('geolocating');
+    console.log("geolocating");
     if ("geolocation" in navigator) {
-      console.log('navigator');
+      console.log("navigator");
       // then set location based on device location
       navigator.geolocation.getCurrentPosition(
         (pos) => {
-          console.log('getting');
+          console.log("getting");
           // set user coordinates
           const geoLatitude = pos.coords.latitude;
           const geoLongitude = pos.coords.longitude;
@@ -111,12 +111,16 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
         },
         (err) => {
           setLoadAPI(false);
-          errorAlert(err.message);
-        }
+          console.log(err.message);
+          errorAlert("Timeout. Couldn't access your location");
+        },
+        // time before timout expires (ms)
+        { timeout: 5000 }
       );
     } else {
       setLoadAPI(false);
       errorAlert("No geolocation object found");
+      setLoadAPI(false);
     }
 
     // and remove focus
