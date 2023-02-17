@@ -18,6 +18,7 @@ function App() {
   const [userSubmitted, setUserSubmitted] = useState(false);
   const [userCoordinates, setUserCoordinates] = useState([43.648209, -79.397858]);
   const [faves, setFaves] = useState([]);
+  const [showFaves, setShowFaves] = useState(false);
 
   const isInFaves = (id) => {
     const res = faves.some((fave) => fave.id === id);
@@ -72,6 +73,9 @@ function App() {
                       userSubmitted={userSubmitted}
                       highlight={highlight}
                       setHighlight={setHighlight}
+                      faves={faves}
+                      showFaves={showFaves}
+                      setShowFaves={setShowFaves}
                     />
                     <Map
                       results={results}
@@ -80,6 +84,8 @@ function App() {
                       isInFaves={isInFaves}
                       faves={faves}
                       highlight={highlight}
+                      showFaves={showFaves}
+                      setShowFaves={setShowFaves}
                     />
                   </div>
                 </section>
