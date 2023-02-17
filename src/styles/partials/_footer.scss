@@ -23,5 +23,12 @@ footer {
       color: $light-green;
     }
   }
+
+  @media (max-width: $mq-big-mobile) {
+    p {
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  }
 }
 

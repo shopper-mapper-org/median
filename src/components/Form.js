@@ -84,17 +84,21 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
   };
 
   const handleGeolocationClick = () => {
+    // set loading
+    setLoadAPI(true);
+
     // geolocation
+    console.log('geolocating');
     if ("geolocation" in navigator) {
+      console.log('navigator');
       // then set location based on device location
       navigator.geolocation.getCurrentPosition(
         (pos) => {
+          console.log('getting');
           // set user coordinates
           const geoLatitude = pos.coords.latitude;
           const geoLongitude = pos.coords.longitude;
           setUserCoordinates([geoLatitude, geoLongitude]);
-          // set loading
-          setLoadAPI(true);
 
           // set user location using coordinates
           const getAddress = async () => {
@@ -111,6 +115,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
         }
       );
     } else {
+      setLoadAPI(false);
       errorAlert("No geolocation object found");
     }
 

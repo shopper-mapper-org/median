@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaRoad } from "react-icons/fa" 
+import { FaRoad } from "react-icons/fa";
 
 const NavBar = () => {
 
@@ -16,12 +16,12 @@ const NavBar = () => {
                 <ul>
                     <li>
                         <Link to="/About">
-                            About
+                          About
                         </Link>
                     </li>
                     <li>
                         <Link to="/Contact">
-                            Contact
+                          Contact
                         </Link>
                     </li>
                 </ul>

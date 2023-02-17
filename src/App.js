@@ -12,6 +12,8 @@ import Footer from "./components/Footer";
 import ErrorPage from "./components/ErrorPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Loader from "./components/Loader";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
 function App() {
   const [loadAPI, setLoadAPI] = useState(false);
@@ -93,6 +95,8 @@ function App() {
             </>
           }
         />
+        <Route path="/About" element={<About/>}/>
+        <Route path="/Contact" element={<Contact/>}/>
         <Route
           path="*"
           element={<ErrorPage />}
