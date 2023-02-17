@@ -35,7 +35,14 @@ const FaveButton = ({ result, isInFaves, faves }) => {
         });
     }
   };
-  return <button className="fav-button" onClick={handleClick}>Favourite</button>;
+  return (
+    <button
+      className="fav-button"
+      onClick={handleClick}
+    >
+      Favourite
+    </button>
+  );
 };
 
 export default FaveButton;

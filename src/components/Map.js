@@ -1,29 +1,20 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { resultIcon, middleIcon, faveIcon, highlightIcon, middleHighlight, faveHighlight } from "../utils/icons";
 import "leaflet/dist/leaflet.css";
-import { fetchRoute } from "../utils/services";
 import Routing from "./Routing";
 import UserMarker from "./UserMarker";
 import FaveButton from "./FaveButton";
 import SetView from "./SetView";
 import { AppContext } from "./context/AppContext";
+import DirectionsButton from "./DirectionsButton";
 
 const Map = () => {
-  const { userCoordinates, results, faves, highlight, showFaves, setShowFaves } = useContext(AppContext);
-  const [route, setRoute] = useState([]);
-  const [showRoute, setShowRoute] = useState(false);
-  const [destination, setDestination] = useState(null);
+  const { userCoordinates, results, faves, highlight, showFaves, setShowFaves, route, showRoute, setShowRoute, destination, setDestination } = useContext(AppContext);
   // const [showFaves, setShowFaves] = useState(false);
 
   // define useRefs to release focus on button clicks
   const backResultsRef = useRef(null);
-
-  const handleDirectionsClick = async (userCoords, resultCoords) => {
-    const fetchedRoute = await fetchRoute(userCoords, resultCoords);
-    setRoute(fetchedRoute);
-    setShowRoute(true);
-  };
 
   const handleBackToResultsClick = () => {
     setShowRoute(false);
@@ -37,13 +28,13 @@ const Map = () => {
     return faves.filter((fave) => fave.id === result.id)[0].faves;
   };
 
-  const isHighlighted = (result) => {
-    return Array.prototype.includes.call(highlight, result);
-  };
-
   const isInFaves = (id) => {
     const res = faves.some((fave) => fave.id === id);
     return res;
+  };
+
+  const isHighlighted = (result) => {
+    return Array.prototype.includes.call(highlight, result);
   };
 
   return (
@@ -88,15 +79,7 @@ const Map = () => {
                   <div>
                     {fave.name}, {fave.place.properties.street}, {fave.place.properties.postalCode}
                   </div>
-                  <button
-                    className="directions-button"
-                    onClick={() => {
-                      handleDirectionsClick(userCoordinates, faveCoordinates);
-                      setDestination(fave);
-                    }}
-                  >
-                    Directions
-                  </button>
+                  <DirectionsButton destination={fave} />
                   <FaveButton
                     result={fave}
                     isInFaves={isInFaves}
@@ -123,15 +106,7 @@ const Map = () => {
                   <div>
                     {result.name}, {result.place.properties.street}, {result.place.properties.postalCode}
                   </div>
-                  <button
-                    className="directions-button"
-                    onClick={() => {
-                      handleDirectionsClick(userCoordinates, resultCoordinates);
-                      setDestination(result);
-                    }}
-                  >
-                    Directions
-                  </button>
+                  <DirectionsButton destination={result} />
                   <FaveButton
                     result={result}
                     isInFaves={isInFaves}

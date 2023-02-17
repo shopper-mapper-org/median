@@ -5,9 +5,6 @@ import firebase from "./database/firebase";
 import "./styles/App.scss";
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
-import Form from "./components/Form";
-import Map from "./components/Map";
-import Results from "./components/Results";
 import Footer from "./components/Footer";
 import ErrorPage from "./components/ErrorPage";
 import ScrollToTop from "./components/ScrollToTop";
@@ -15,6 +12,7 @@ import Loader from "./components/Loader";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import { AppContext } from "./components/context/AppContext";
+import Main from "./components/Main";
 
 function App() {
   const { loadAPI, setLoadAPI, setFaves } = useContext(AppContext);
@@ -49,17 +47,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={
-            <>
-              <Form />
-              <section className="container">
-                <div className="results-map-container">
-                  <Results />
-                  <Map />
-                </div>
-              </section>
-            </>
-          }
+          element={<Main />}
         />
         <Route
           path="/About"
@@ -67,11 +55,7 @@ function App() {
         />
         <Route
           path="/Contact"
-          element={
-            <div className="contact-only">
-              <Contact />
-            </div>
-          }
+          element={<Contact />}
         />
         <Route
           path="*"
