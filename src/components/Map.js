@@ -44,13 +44,15 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight, showFaves,
   return (
     <div className="map-view">
       <h2>Map</h2>
-      {showRoute ? <button
-        className="map-view-button"
-        onClick={handleBackToResultsClick}
-        ref={backResultsRef}
-      >
-        Back to Map
-      </button> : null }
+      {showRoute ? (
+        <button
+          className="map-view-button"
+          onClick={handleBackToResultsClick}
+          ref={backResultsRef}
+        >
+          Back to Map
+        </button>
+      ) : null}
       <MapContainer
         center={userCoordinates}
         zoom={13}
@@ -70,9 +72,12 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight, showFaves,
               <Marker
                 key={index}
                 position={faveCoordinates}
-                icon={isHighlighted(fave) ? faveHighlight
-                  //: fave.isMiddle ? middleIcon
-                  : faveIcon}
+                icon={
+                  isHighlighted(fave)
+                    ? faveHighlight
+                    : //: fave.isMiddle ? middleIcon
+                      faveIcon
+                }
               >
                 <Popup>
                   <div>
@@ -92,7 +97,9 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight, showFaves,
                     isInFaves={isInFaves}
                     faves={faves}
                   />
-                  <div className="fav-div">Faves: <span className="fav-count">{faveCount(fave)}</span></div>
+                  <div className="fav-div">
+                    Faves: <span className="fav-count">{faveCount(fave)}</span>
+                  </div>
                 </Popup>
               </Marker>
             );
@@ -147,7 +154,8 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight, showFaves,
             </Marker>
           </>
         )}
-        <SetView coords={userCoordinates} />
+        {highlight && highlight[0] ? <SetView coords={[highlight[0].place.geometry.coordinates[1], highlight[0].place.geometry.coordinates[0]]} /> : <SetView coords={userCoordinates} />}
+        {/* <SetView coords={userCoordinates} /> */}
       </MapContainer>
       <label className="fav-tab">
         <input
@@ -155,7 +163,7 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight, showFaves,
           value={showFaves}
           onChange={() => setShowFaves(!showFaves)}
         />{" "}
-        Show {(showFaves) ? "Results" : "Faves"}
+        Show {showFaves ? "Results" : "Faves"}
       </label>
     </div>
   );
