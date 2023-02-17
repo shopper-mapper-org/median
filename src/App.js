@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
-import "./styles/App.scss";
-import Map from "./components/Map";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Results from "./components/Results";
-import Form from "./components/Form";
+import { Routes, Route } from "react-router-dom";
 import firebase from "./database/firebase";
+import "./styles/App.scss";
+import NavBar from "./components/NavBar";
+import Header from "./components/Header";
+import Form from "./components/Form";
+import Map from "./components/Map";
+import Results from "./components/Results";
+import Footer from "./components/Footer";
 import ErrorPage from "./components/ErrorPage";
 import ScrollToTop from "./components/ScrollToTop";
-import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [loadAPI, setLoadAPI] = useState(false);
@@ -48,6 +49,7 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar />
       <Header />
       {loadAPI ? (
         <div className="loader-container">
