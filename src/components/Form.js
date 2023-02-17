@@ -72,10 +72,10 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
 
     const getResults = async () => {
       // set loading state
-      // setLoadAPI(true);
+      setLoadAPI(true);
       const fetchedResults = await fetchResults(queryInput, userCoordinates);
       setResults(fetchedResults);
-      // setLoadAPI(false); // done loading!
+      setLoadAPI(false); // done loading!
     };
     getResults();
 
@@ -93,18 +93,20 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
           const geoLatitude = pos.coords.latitude;
           const geoLongitude = pos.coords.longitude;
           setUserCoordinates([geoLatitude, geoLongitude]);
+          // set loading
+          setLoadAPI(true);
+
           // set user location using coordinates
           const getAddress = async () => {
-            // set loading
-            // setLoadAPI(true);
             const fetchedAddress = await fetchAddress(geoLatitude, geoLongitude);
             psLocation.setVal(fetchedAddress);
             setLocationInput(fetchedAddress);
-            // setLoadAPI(false); // done loading!
+            setLoadAPI(false); // done loading!
           };
           getAddress();
         },
         (err) => {
+          setLoadAPI(false);
           errorAlert(err.message);
         }
       );
@@ -138,7 +140,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
           </div>
           <div className="query-container">
             <label htmlFor="query">
-              Try Searching for an Attraction <span>(e.g Museum, Restaurant, etc..)</span>
+              Search for an Attraction <span>(e.g. Museum, Restaurant, etc.)</span>
             </label>
             <input
               type="text"
@@ -161,7 +163,7 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
               onClick={handleGeolocationClick}
               ref={gpsButtonRef}
             >
-              Use GPS location
+              Use My Location
             </button>
           </div>
         </form>

@@ -49,6 +49,21 @@
       display: block;
     }
   }
+
+  .mq-dropdown-menu {
+    z-index: 9999 !important;
+  }
+
+  .mq-dataset-results {
+    font-size: 1rem;
+
+    .mq-result-icon,
+    .mq-name,
+    .mq-address {
+      white-space: nowrap;
+      display: inline;
+    }
+  }
   
   .button-container{
     @media (max-width: $mq-small){

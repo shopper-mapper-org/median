@@ -11,6 +11,7 @@ import Results from "./components/Results";
 import Footer from "./components/Footer";
 import ErrorPage from "./components/ErrorPage";
 import ScrollToTop from "./components/ScrollToTop";
+import Loader from "./components/Loader";
 
 function App() {
   const [loadAPI, setLoadAPI] = useState(false);
@@ -52,54 +53,51 @@ function App() {
       <NavBar />
       <Header />
       {loadAPI ? (
-        <div className="loader-container">
-          <div className="load-animation"></div>
-        </div>
-      ) : (
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Form
-                  setUserCoordinates={setUserCoordinates}
-                  userCoordinates={userCoordinates}
-                  setResults={setResults}
-                  setUserSubmitted={setUserSubmitted}
-                  setLoadAPI={setLoadAPI}
-                />
-                <section className="container">
-                  <div className="results-map-container">
-                    <Results
-                      results={results}
-                      userSubmitted={userSubmitted}
-                      highlight={highlight}
-                      setHighlight={setHighlight}
-                      faves={faves}
-                      showFaves={showFaves}
-                      setShowFaves={setShowFaves}
-                    />
-                    <Map
-                      results={results}
-                      setResults={setResults}
-                      userCoordinates={userCoordinates}
-                      isInFaves={isInFaves}
-                      faves={faves}
-                      highlight={highlight}
-                      showFaves={showFaves}
-                      setShowFaves={setShowFaves}
-                    />
-                  </div>
-                </section>
-              </>
-            }
-          />
-          <Route
-            path="*"
-            element={<ErrorPage />}
-          />
-        </Routes>
-      )}
+        <Loader />
+      ) : null}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Form
+                setUserCoordinates={setUserCoordinates}
+                userCoordinates={userCoordinates}
+                setResults={setResults}
+                setUserSubmitted={setUserSubmitted}
+                setLoadAPI={setLoadAPI}
+              />
+              <section className="container">
+                <div className="results-map-container">
+                  <Results
+                    results={results}
+                    userSubmitted={userSubmitted}
+                    highlight={highlight}
+                    setHighlight={setHighlight}
+                    faves={faves}
+                    showFaves={showFaves}
+                    setShowFaves={setShowFaves}
+                  />
+                  <Map
+                    results={results}
+                    setResults={setResults}
+                    userCoordinates={userCoordinates}
+                    isInFaves={isInFaves}
+                    faves={faves}
+                    highlight={highlight}
+                    showFaves={showFaves}
+                    setShowFaves={setShowFaves}
+                  />
+                </div>
+              </section>
+            </>
+          }
+        />
+        <Route
+          path="*"
+          element={<ErrorPage />}
+        />
+      </Routes>
       <Footer />
       <ScrollToTop />
     </div>
