@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { resultIcon, middleIcon, faveIcon, highlightIcon, middleHighlight } from "../utils/icons";
+import { resultIcon, middleIcon, faveIcon, highlightIcon, middleHighlight, faveHighlight } from "../utils/icons";
 import "leaflet/dist/leaflet.css";
 import { fetchRoute } from "../utils/services";
 import Routing from "./Routing";
@@ -8,11 +8,11 @@ import UserMarker from "./UserMarker";
 import FaveButton from "./FaveButton";
 import SetView from "./SetView";
 
-const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
+const Map = ({ userCoordinates, results, isInFaves, faves, highlight, showFaves, setShowFaves }) => {
   const [route, setRoute] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
   const [destination, setDestination] = useState(null);
-  const [showFaves, setShowFaves] = useState(false);
+  // const [showFaves, setShowFaves] = useState(false);
 
   // define useRefs to release focus on button clicks
   const backResultsRef = useRef(null);
@@ -44,13 +44,13 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
   return (
     <div className="map-view">
       <h2>Map</h2>
-      <button
+      {showRoute ? <button
         className="map-view-button"
         onClick={handleBackToResultsClick}
         ref={backResultsRef}
       >
-        Back to results
-      </button>
+        Back to Map
+      </button> : null }
       <MapContainer
         center={userCoordinates}
         zoom={13}
@@ -70,7 +70,9 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
               <Marker
                 key={index}
                 position={faveCoordinates}
-                icon={fave.isMiddle ? middleIcon : faveIcon}
+                icon={isHighlighted(fave) ? faveHighlight
+                  //: fave.isMiddle ? middleIcon
+                  : faveIcon}
               >
                 <Popup>
                   <div>
@@ -90,7 +92,7 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
                     isInFaves={isInFaves}
                     faves={faves}
                   />
-                  <div>Fave Count: {faveCount(fave)}</div>
+                  <div className="fav-div">Faves: <span className="fav-count">{faveCount(fave)}</span></div>
                 </Popup>
               </Marker>
             );
@@ -153,7 +155,7 @@ const Map = ({ userCoordinates, results, isInFaves, faves, highlight }) => {
           value={showFaves}
           onChange={() => setShowFaves(!showFaves)}
         />{" "}
-        Show Faves
+        Show {(showFaves) ? "Results" : "Faves"}
       </label>
     </div>
   );

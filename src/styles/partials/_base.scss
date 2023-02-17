@@ -1,12 +1,11 @@
 @use 'variables' as *;
 
 .container {
-  width: 90%;
+  width: 80%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-// Temp color, not actual
 body{
   background-color: $bg-color;
 }

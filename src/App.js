@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
-import "./styles/App.scss";
-import Map from "./components/Map";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Results from "./components/Results";
-import Form from "./components/Form";
+import { Routes, Route } from "react-router-dom";
 import firebase from "./database/firebase";
+import "./styles/App.scss";
+import NavBar from "./components/NavBar";
+import Header from "./components/Header";
+import Form from "./components/Form";
+import Map from "./components/Map";
+import Results from "./components/Results";
+import Footer from "./components/Footer";
 import ErrorPage from "./components/ErrorPage";
 import ScrollToTop from "./components/ScrollToTop";
-import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [loadAPI, setLoadAPI] = useState(false);
@@ -18,6 +19,7 @@ function App() {
   const [userSubmitted, setUserSubmitted] = useState(false);
   const [userCoordinates, setUserCoordinates] = useState([43.648209, -79.397858]);
   const [faves, setFaves] = useState([]);
+  const [showFaves, setShowFaves] = useState(false);
 
   const isInFaves = (id) => {
     const res = faves.some((fave) => fave.id === id);
@@ -47,6 +49,7 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar />
       <Header />
       {loadAPI ? (
         <div className="loader-container">
@@ -72,6 +75,9 @@ function App() {
                       userSubmitted={userSubmitted}
                       highlight={highlight}
                       setHighlight={setHighlight}
+                      faves={faves}
+                      showFaves={showFaves}
+                      setShowFaves={setShowFaves}
                     />
                     <Map
                       results={results}
@@ -80,6 +86,8 @@ function App() {
                       isInFaves={isInFaves}
                       faves={faves}
                       highlight={highlight}
+                      showFaves={showFaves}
+                      setShowFaves={setShowFaves}
                     />
                   </div>
                 </section>

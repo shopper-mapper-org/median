@@ -1,0 +1,45 @@
+// Nav Bar Partial
+
+@use 'variables' as *;
+
+.nav-container{
+    height: 10vh;
+    background-color: $black;
+
+    nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        font-size: 1.3rem;
+    }
+    
+    a{
+        text-decoration: none;
+        color: $aqua-blue;
+        text-transform: uppercase;
+        display: flex;
+    }
+
+    ul{
+        display: flex;
+        justify-content: space-between;
+        width: 280px;
+        padding: 0;
+        list-style: none;
+
+        @media (max-width: $mq-small){
+            width: 220px;
+        }
+
+        // Implement hamburger menu possibly?
+        @media (max-width: $mq-big-mobile){
+            width: 66%;
+        }
+
+        @media (max-width: $mq-mobile){
+            width: 170px;
+            font-size: 1rem;
+        }
+    }
+}

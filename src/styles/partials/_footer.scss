@@ -10,8 +10,8 @@ footer {
   }
   bottom: 0;
   background-color: $black;
-  margin-top: 50px;
-
+  margin-top: 5vh;
+  height: 10vh;
   a{
     text-decoration: none;
     margin-bottom: 20px;
@@ -19,7 +19,7 @@ footer {
     transition: 0.2s ease-in-out;
 
     &:hover,
-    &focus{
+    &:focus{
       color: $light-green;
     }
   }
