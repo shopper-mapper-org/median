@@ -84,6 +84,8 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
   };
 
   const handleGeolocationClick = () => {
+    // set loading
+    setLoadAPI(true);
     // geolocation
     if ("geolocation" in navigator) {
       // then set location based on device location
@@ -93,8 +95,6 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
           const geoLatitude = pos.coords.latitude;
           const geoLongitude = pos.coords.longitude;
           setUserCoordinates([geoLatitude, geoLongitude]);
-          // set loading
-          setLoadAPI(true);
 
           // set user location using coordinates
           const getAddress = async () => {
@@ -107,11 +107,16 @@ const Form = ({ setUserCoordinates, setResults, userCoordinates, setUserSubmitte
         },
         (err) => {
           setLoadAPI(false);
-          errorAlert(err.message);
-        }
+          console.log(err.message);
+          errorAlert("Timeout. Couldn't access your location");
+        },
+        // time before timout expires (ms)
+        { timeout: 5000 }
       );
     } else {
+      // setLoadAPI(false);
       errorAlert("No geolocation object found");
+      setLoadAPI(false);
     }
 
     // and remove focus
