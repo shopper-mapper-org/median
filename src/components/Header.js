@@ -4,9 +4,11 @@ import React from 'react';
 const Header = () => {
   return (
     <header>
-      <h1>MEDIAN</h1>
-      <h2>brought to you by the good folks at <strong>SHOPPER MAPPER</strong></h2>
-      <h3>the world's most average places at your fingertips</h3>
+      <div className="container">
+        <h1>MEDIAN</h1>
+        <h2>brought to you by the good folks at <strong>SHOPPER MAPPER</strong></h2>
+        <h3>the world's most average places at your fingertips</h3>
+      </div>
     </header>
   )
 };
