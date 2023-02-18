@@ -75,4 +75,10 @@
         font-size: 2rem;
         color: $aqua-blue;
     }
+
+    .close{
+        position: fixed;
+        top: 30px;
+        right: 35px;
+    }
 }

@@ -5,14 +5,14 @@ import firebase from "./database/firebase";
 import "./styles/App.scss";
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
-import ErrorPage from "./components/ErrorPage";
-import ScrollToTop from "./components/ScrollToTop";
 import Loader from "./components/Loader";
+import Main from "./components/Main";
+import ScrollToTop from "./components/ScrollToTop";
+import Footer from "./components/Footer";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import ErrorPage from "./components/ErrorPage";
 import { AppContext } from "./components/context/AppContext";
-import Main from "./components/Main";
 
 function App() {
   const { loadAPI, setLoadAPI, setFaves } = useContext(AppContext);

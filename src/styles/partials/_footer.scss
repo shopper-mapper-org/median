@@ -9,6 +9,7 @@ footer {
   p {
     margin: 0;
     padding: 0;
+    text-align: center;
   }
   bottom: 0;
   background-color: $n-f-color;
@@ -19,6 +20,8 @@ footer {
     color: $coral-pink;
     transition: 0.2s ease-in-out;
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
 
     &:hover,
     &:focus {
@@ -28,7 +31,6 @@ footer {
 
   @media (max-width: $mq-big-mobile) {
     p {
-      text-align: center;
       font-size: 0.8rem;
     }
   }

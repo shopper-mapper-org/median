@@ -14,6 +14,7 @@ const NavBar = () => {
             <nav className="container">
                 <Link to="/">
                     <FaRoad
+                        title="Median Logo - Home Page"
                         className="page-logo"
                         aria-label="Median page logo and home button"
                     />

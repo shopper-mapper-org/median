@@ -26,6 +26,7 @@ const ScrollToTop = () => {
         <div className="scroll-component">
             {toTop && (
                 <BsFillFileArrowUpFill
+                    title="Scroll to Top"
                     onClick={scrollUp}
                     className="scroll-up-button"
                     aria-label="scroll to top button"
