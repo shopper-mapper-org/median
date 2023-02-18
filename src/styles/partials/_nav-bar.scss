@@ -1,45 +1,78 @@
 // Nav Bar Partial
 
-@use 'variables' as *;
+@use './variables' as *;
 
-.nav-container{
+.nav-container {
     height: 10vh;
-    background-color: $black;
+    background-color: $n-f-color;
 
-    nav{
+    nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 100%;
         font-size: 1.3rem;
     }
-    
-    a{
+
+    .page-logo {
+        font-size: 2.5rem;
+    }
+
+
+    a {
         text-decoration: none;
         color: $aqua-blue;
         text-transform: uppercase;
         display: flex;
     }
 
-    ul{
+    ul {
         display: flex;
         justify-content: space-between;
         width: 280px;
         padding: 0;
+        margin: 0;
         list-style: none;
 
-        @media (max-width: $mq-small){
-            width: 220px;
+        @media (max-width: $mq-ipad) {
+            position: fixed;
+            left: -100%;
+            top: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            transition: 0.5s;
+            z-index: 10000;
+            background: rgba($n-f-color, 0.7);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba($white, 0.3);
         }
+    }
 
-        // Implement hamburger menu possibly?
-        @media (max-width: $mq-big-mobile){
-            width: 66%;
-        }
+    .nav-list.active {
+        left: 0;
+    }
 
-        @media (max-width: $mq-mobile){
-            width: 170px;
-            font-size: 1rem;
+    li {
+        @media (max-width: $mq-ipad) {
+            margin: 30px;
         }
+    }
+
+    .menu {
+        z-index: 100000;
+        display: none;
+
+        @media (max-width: $mq-ipad) {
+            display: flex;
+        }
+    }
+
+    .hamburger,
+    .close {
+        font-size: 2rem;
+        color: $aqua-blue;
     }
 }

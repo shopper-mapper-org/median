@@ -11,13 +11,14 @@ footer {
     padding: 0;
   }
   bottom: 0;
-  background-color: $black;
+  background-color: $n-f-color;
   margin-top: 5vh;
-  height: 60px;
+  height: 10vh;
   a {
     text-decoration: none;
     color: $coral-pink;
     transition: 0.2s ease-in-out;
+    margin-top: 10px;
 
     &:hover,
     &:focus {

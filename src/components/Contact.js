@@ -1,5 +1,7 @@
 import React from "react";
-import { FaEnvelope, FaGithub, FaLinkedin, FaMailBulk, FaMailchimp, FaPortrait } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaLinkedin, FaPortrait } from "react-icons/fa";
+
+// FaMailchimp & FaMailBulk icons being used?
 
 const Contact = () => {
   return (
