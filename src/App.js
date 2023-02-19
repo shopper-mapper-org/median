@@ -1,17 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
-import { Routes, Route } from "react-router-dom";
 import firebase from "./database/firebase";
 import "./styles/App.scss";
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
 import Loader from "./components/Loader";
-import Main from "./components/Main";
-import ScrollToTop from "./components/ScrollToTop";
+import RouteAnimation from "./components/RouteAnimation";
 import Footer from "./components/Footer";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import ErrorPage from "./components/ErrorPage";
+import ScrollToTop from "./components/ScrollToTop";
 import { AppContext } from "./components/context/AppContext";
 
 function App() {
@@ -44,24 +40,7 @@ function App() {
       <NavBar />
       <Header />
       {loadAPI ? <Loader /> : null}
-      <Routes>
-        <Route
-          path="/"
-          element={<Main />}
-        />
-        <Route
-          path="/About"
-          element={<About />}
-        />
-        <Route
-          path="/Contact"
-          element={<Contact />}
-        />
-        <Route
-          path="*"
-          element={<ErrorPage />}
-        />
-      </Routes>
+      <RouteAnimation />
       <Footer />
       <ScrollToTop />
     </div>
