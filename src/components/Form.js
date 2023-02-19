@@ -81,25 +81,38 @@ const Form = () => {
     
     if (!autoCoords) {
       // we need to get the user coordinates
-      console.log("fetching coordinates...");
       const getCoords = async () => {
+        console.log("getting coords for: ", locationInput);
         setLoadAPI(true);
         const fetchedCoords = await fetchCoords(locationInput);
-        setUserCoordinates([fetchedCoords.lat, fetchedCoords.lng]);
+        console.log(fetchedCoords);
+        if (fetchedCoords) {
+          setUserCoordinates([fetchedCoords.lat, fetchedCoords.lng]);
+          const fetchedResults = await fetchResults(queryInput, [fetchedCoords.lat, fetchedCoords.lng]);
+          setResults(fetchedResults);
+        } else {
+          setLoadAPI(false);
+          setAutoCoords(false);
+          errorAlert("Location not found!");
+          setLocationInput("");
+          psLocation.setVal("");
+        }
         setLoadAPI(false);
       }
+
       getCoords();
+    } else {
+
+      const getResults = async () => {
+        // set loading state
+        setLoadAPI(true);
+        const fetchedResults = await fetchResults(queryInput, userCoordinates);
+        setResults(fetchedResults);
+        setLoadAPI(false); // done loading!
+      };
+
+      getResults();
     }
-
-    const getResults = async () => {
-      // set loading state
-      setLoadAPI(true);
-      const fetchedResults = await fetchResults(queryInput, userCoordinates);
-      setResults(fetchedResults);
-      setLoadAPI(false); // done loading!
-    };
-
-    getResults();
 
     // and remove focus
     searchButtonRef.current.blur();

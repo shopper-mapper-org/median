@@ -67,8 +67,12 @@ const fetchCoords = async (loc) => {
       },
     });
 
-    // returns an object that contains lat and lng
-    return res.data.results[0].locations[0].latLng;
+    if (res.data.results[0].locations[0].source === "FALLBACK") {
+      return null;
+    } else {
+      // returns an object that contains lat and lng
+      return res.data.results[0].locations[0].latLng;
+    }
   } catch (err) {
     // console.log(err);
     errorAlert();
