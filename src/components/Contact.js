@@ -2,8 +2,6 @@ import React from "react";
 import { FaEnvelope, FaGithub, FaLinkedin, FaPortrait } from "react-icons/fa";
 import { motion as m } from "framer-motion"
 
-// FaMailchimp & FaMailBulk icons being used?
-
 const Contact = () => {
   return (
     <m.div 

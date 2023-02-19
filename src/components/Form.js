@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { fetchResults, fetchAddress } from "../utils/services";
+import { fetchResults, fetchAddress, fetchCoords } from "../utils/services";
 import { errorAlert } from "../utils/alerts";
 import { AppContext } from "./context/AppContext";
 
@@ -11,6 +11,9 @@ const Form = () => {
 
   const [psLocation, setPsLocation] = useState(null);
   const [psQuery, setPsQuery] = useState(null);
+
+  // set TRUE if we use the auto-complete coordinates
+  const [autoCoords, setAutoCoords] = useState(false);
 
   const formRef = useRef(null);
   // set button refs to reset focus after click
@@ -41,11 +44,13 @@ const Form = () => {
       psLocation.on("change", (e) => {
         setLocationInput(e.result.value);
         setUserCoordinates([e.result.latlng.lat, e.result.latlng.lng]);
+        setAutoCoords(true);
         psLocation.setVal(e.result.value);
         psLocation.close();
       });
       psLocation.on("clear", () => {
         setLocationInput("");
+        setAutoCoords(false);
       });
     }
     if (psQuery) {
@@ -63,6 +68,7 @@ const Form = () => {
 
   const handleLocInputChange = (event) => {
     setLocationInput(event.target.value);
+    setAutoCoords(false);
   };
 
   const handleQueryInputChange = (event) => {
@@ -72,6 +78,18 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setUserSubmitted(true);
+    
+    if (!autoCoords) {
+      // we need to get the user coordinates
+      console.log("fetching coordinates...");
+      const getCoords = async () => {
+        setLoadAPI(true);
+        const fetchedCoords = await fetchCoords(locationInput);
+        setUserCoordinates([fetchedCoords.lat, fetchedCoords.lng]);
+        setLoadAPI(false);
+      }
+      getCoords();
+    }
 
     const getResults = async () => {
       // set loading state
@@ -80,6 +98,7 @@ const Form = () => {
       setResults(fetchedResults);
       setLoadAPI(false); // done loading!
     };
+
     getResults();
 
     // and remove focus
@@ -91,17 +110,15 @@ const Form = () => {
     setLoadAPI(true);
 
     // geolocation
-    console.log("geolocating");
     if ("geolocation" in navigator) {
-      console.log("navigator");
       // then set location based on device location
       navigator.geolocation.getCurrentPosition(
         (pos) => {
-          console.log("getting");
           // set user coordinates
           const geoLatitude = pos.coords.latitude;
           const geoLongitude = pos.coords.longitude;
           setUserCoordinates([geoLatitude, geoLongitude]);
+          setAutoCoords(true);
 
           // set user location using coordinates
           const getAddress = async () => {
@@ -114,7 +131,7 @@ const Form = () => {
         },
         (err) => {
           setLoadAPI(false);
-          console.log(err.message);
+          setAutoCoords(false);
           errorAlert("Timeout. Couldn't access your location");
         },
         // time before timout expires (ms)
@@ -122,6 +139,7 @@ const Form = () => {
       );
     } else {
       setLoadAPI(false);
+      setAutoCoords(false);
       errorAlert("No geolocation object found");
       setLoadAPI(false);
     }

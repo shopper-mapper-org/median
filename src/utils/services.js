@@ -34,7 +34,7 @@ const fetchRoute = async (from, to) => {
     });
     return res.data.route;
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     errorAlert("Route not found");
   }
 };
@@ -51,7 +51,26 @@ const fetchAddress = async (lat, lon) => {
     });
     return res.data.results[0].locations[0].street;
   } catch (err) {
-    console.log(err);
+    // console.log(err);
+    errorAlert();
+  }
+};
+
+const fetchCoords = async (loc) => {
+  try {
+    const res = await axios({
+      url: "https://www.mapquestapi.com/geocoding/v1/address",
+      responseType: "json",
+      params: {
+        key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
+        location: `${loc}`,
+      },
+    });
+
+    // returns an object that contains lat and lng
+    return res.data.results[0].locations[0].latLng;
+  } catch (err) {
+    // console.log(err);
     errorAlert();
   }
 };
@@ -98,4 +117,4 @@ const setHighlights = (dataArray, highlightArray) => {
   return curArray;
 };
 
-export { fetchResults, fetchRoute, fetchAddress, setMiddle, setHighlights };
+export { fetchResults, fetchRoute, fetchAddress, fetchCoords, setMiddle, setHighlights };

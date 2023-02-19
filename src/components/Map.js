@@ -8,10 +8,10 @@ import FaveButton from "./FaveButton";
 import SetView from "./SetView";
 import { AppContext } from "./context/AppContext";
 import DirectionsButton from "./DirectionsButton";
+import MapLegend from "./MapLegend";
 
 const Map = () => {
   const { userCoordinates, results, faves, highlight, showFaves, setShowFaves, route, showRoute, setShowRoute, destination, setDestination } = useContext(AppContext);
-  // const [showFaves, setShowFaves] = useState(false);
 
   // define useRefs to release focus on button clicks
   const backResultsRef = useRef(null);
@@ -71,8 +71,7 @@ const Map = () => {
                 icon={
                   isHighlighted(fave)
                     ? faveHighlight
-                    : //: fave.isMiddle ? middleIcon
-                      faveIcon
+                    : faveIcon
                 }
               >
                 <Popup>
@@ -145,6 +144,7 @@ const Map = () => {
         />{" "}
         Show {showFaves ? "Results" : "Faves"}
       </label>
+      <MapLegend />
     </div>
   );
 };

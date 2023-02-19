@@ -3,9 +3,10 @@
 .leaflet-container {
   height: 400px;
   margin-block: 25px;
+  margin-bottom: 0px;
   color: $black;
-  border-radius: 5px;
-    border-top-right-radius: 0px;
+  border-radius: 0px;
+  border-top-left-radius: 5px;
 }
 
 .results-map-container {
@@ -42,7 +43,7 @@
   border-radius: 5px;
   border-top-right-radius: 0px;
   background-color: $bg-color;
-  background-color: rgba($light-green, 0.1);
+  background: rgba($light-green, 0.1);
   overflow-x: hidden;
   max-height: 400px;
 
