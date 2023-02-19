@@ -28,7 +28,7 @@ const NavBar = () => {
                     </li>
                 </ul>
                 <div className="menu" onClick={handleToggle}>
-                    {toggle ? (<FaTimes className="close" />) : (<FaBars className="hamburger" />)}
+                    {toggle ? (<FaTimes className="close" title="Close Menu" />) : (<FaBars className="hamburger" title="Open Menu" />)}
                 </div>
             </nav>
         </div>

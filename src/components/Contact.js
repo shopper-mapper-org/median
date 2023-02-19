@@ -1,11 +1,18 @@
 import React from "react";
 import { FaEnvelope, FaGithub, FaLinkedin, FaPortrait } from "react-icons/fa";
+import { motion as m } from "framer-motion"
 
 // FaMailchimp & FaMailBulk icons being used?
 
 const Contact = () => {
   return (
-    <div className="contact-only">
+    <m.div 
+      className="contact-only"
+      transition={{ duration: 1.2 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <section className="container">
         <section className="about-team">
           <h2>THE SHOPPER MAPPER TEAM</h2>
@@ -124,7 +131,7 @@ const Contact = () => {
           </div>
         </section>
       </section>
-    </div>
+    </m.div>
   );
 };
 
