@@ -6,27 +6,17 @@ const MIN = 1;
 const MAX = 20;
 
 class RangeInput extends React.Component {
-  state = {
-    values: [10],
-  };
   render() {
+    const { rangeValues, setRangeValues } = this.props;
     return (
-      <div className="container">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            margin: "2em",
-            width: "100%",
-          }}
-        >
+      <div className="range-input container">
+        <div className="range-track">
           <Range
-            values={this.state.values}
+            values={rangeValues}
             step={STEP}
             min={MIN}
             max={MAX}
-            onChange={(values) => this.setState({ values })}
+            onChange={(values) => setRangeValues(values)}
             renderTrack={({ props, children }) => (
               <div
                 onMouseDown={props.onMouseDown}
@@ -35,18 +25,22 @@ class RangeInput extends React.Component {
                   ...props.style,
                   height: "36px",
                   display: "flex",
+                  justifyContent: "center",
                   width: "100%",
+                  padding: "0",
+                  margin: "0",
                 }}
               >
                 <div
+                  className="track-bg"
                   ref={props.ref}
                   style={{
                     height: "5px",
                     width: "100%",
                     borderRadius: "4px",
                     background: getTrackBackground({
-                      values: this.state.values,
-                      colors: ["#548BF4", "#ccc"],
+                      values: rangeValues,
+                      colors: ["#C4E39C", "#ccc"],
                       min: MIN,
                       max: MAX,
                     }),
@@ -59,24 +53,13 @@ class RangeInput extends React.Component {
             )}
             renderThumb={({ props, isDragged }) => (
               <div
+                className="range-thumb"
                 {...props}
-                style={{
-                  ...props.style,
-                  height: "42px",
-                  width: "42px",
-                  borderRadius: "4px",
-                  backgroundColor: "#FFF",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxShadow: "0px 2px 6px #AAA",
-                }}
               >
                 <div
+                  className="range-notch"
                   style={{
-                    height: "16px",
-                    width: "5px",
-                    backgroundColor: isDragged ? "#548BF4" : "#CCC",
+                    backgroundColor: isDragged ? "#C4E39C" : "#CCC",
                   }}
                 />
               </div>
@@ -86,7 +69,7 @@ class RangeInput extends React.Component {
             style={{ marginTop: "30px" }}
             id="output"
           >
-            {this.state.values[0].toFixed(1)}
+            {rangeValues[0].toFixed(1)}
           </output>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { errorAlert, errorPopup } from "./alerts";
 
-const fetchResults = async (query, coordinates, range = 10000) => {
+const fetchResults = async (query, coordinates, range = 10) => {
+  console.log("fetching", query, coordinates, range);
   try {
     const res = await axios({
       url: "https://www.mapquestapi.com/search/v4/place",
@@ -9,10 +10,13 @@ const fetchResults = async (query, coordinates, range = 10000) => {
       params: {
         sort: "relevance",
         key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
-        circle: [coordinates[1], coordinates[0], range].join(", "),
+        // location: [coordinates[1], coordinates[0]].join(", "),
+        circle: [coordinates[1], coordinates[0], range * 1000].join(", "),
         q: query,
+        pageSize: 100,
       },
     });
+    console.log(res.data.results.length);
     const updatedArray = setMiddle(res.data.results);
     return updatedArray;
   } catch (err) {

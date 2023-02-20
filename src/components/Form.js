@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import { fetchResults, fetchAddress, fetchCoords } from "../utils/services";
 import { errorAlert } from "../utils/alerts";
 import { AppContext } from "./context/AppContext";
+import RangeInput from "./RangeInput";
 
 const Form = () => {
   const { setUserCoordinates, setResults, userCoordinates, setUserSubmitted, setLoadAPI } = useContext(AppContext);
-  import RangeInput from "./RangeInput";
 
   const [queryInput, setQueryInput] = useState("");
   const [locationInput, setLocationInput] = useState("");
+  const [rangeValues, setRangeValues] = useState([10]);
 
   const [psLocation, setPsLocation] = useState(null);
   const [psQuery, setPsQuery] = useState(null);
@@ -89,7 +90,7 @@ const Form = () => {
         console.log(fetchedCoords);
         if (fetchedCoords) {
           setUserCoordinates([fetchedCoords.lat, fetchedCoords.lng]);
-          const fetchedResults = await fetchResults(queryInput, [fetchedCoords.lat, fetchedCoords.lng]);
+          const fetchedResults = await fetchResults(queryInput, [fetchedCoords.lat, fetchedCoords.lng], rangeValues[0]);
           setResults(fetchedResults);
         } else {
           setLoadAPI(false);
@@ -106,7 +107,7 @@ const Form = () => {
       const getResults = async () => {
         // set loading state
         setLoadAPI(true);
-        const fetchedResults = await fetchResults(queryInput, userCoordinates);
+        const fetchedResults = await fetchResults(queryInput, userCoordinates, rangeValues[0]);
         setResults(fetchedResults);
         setLoadAPI(false); // done loading!
       };
@@ -194,7 +195,10 @@ const Form = () => {
               required
             ></input>
           </div>
-          <RangeInput />
+          <RangeInput
+            rangeValues={rangeValues}
+            setRangeValues={setRangeValues}
+          />
           <div className="button-container">
             <button
               type="submit"
