@@ -9,7 +9,7 @@ class RangeInput extends React.Component {
   render() {
     const { rangeValues, setRangeValues } = this.props;
     return (
-      <div className="range-input container">
+      <div className="range-input">
         <div className="range-track">
           <Range
             values={rangeValues}

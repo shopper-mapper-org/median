@@ -195,10 +195,16 @@ const Form = () => {
               required
             ></input>
           </div>
-          <RangeInput
-            rangeValues={rangeValues}
-            setRangeValues={setRangeValues}
-          />
+          <div className="range-input-container">
+            <div className="container">
+              <label htmlFor="range-input">Set Search Range</label>
+              <RangeInput
+                id="range-input"
+                rangeValues={rangeValues}
+                setRangeValues={setRangeValues}
+              />
+            </div>
+          </div>
           <div className="button-container">
             <button
               type="submit"

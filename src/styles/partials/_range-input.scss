@@ -1,12 +1,14 @@
 @use "variables" as *;
 
-.range-input {
+.range-input-container {
+  width: 100%;
+  margin-top: 10px;
   .range-track {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-    margin: 1rem 0;
+    margin: 0;
   }
   .range-thumb {
     height: 42px;
