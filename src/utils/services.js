@@ -2,7 +2,6 @@ import axios from "axios";
 import { errorAlert, errorPopup } from "./alerts";
 
 const fetchResults = async (query, coordinates, range = 10) => {
-  console.log("fetching", query, coordinates, range);
   try {
     const res = await axios({
       url: "https://www.mapquestapi.com/search/v4/place",
@@ -16,7 +15,6 @@ const fetchResults = async (query, coordinates, range = 10) => {
         pageSize: 100,
       },
     });
-    console.log(res.data.results.length);
     const updatedArray = setMiddle(res.data.results);
     return updatedArray;
   } catch (err) {
@@ -38,7 +36,6 @@ const fetchRoute = async (from, to) => {
     });
     return res.data.route;
   } catch (err) {
-    // console.log(err);
     errorAlert("Route not found");
   }
 };
@@ -55,7 +52,6 @@ const fetchAddress = async (lat, lon) => {
     });
     return res.data.results[0].locations[0].street;
   } catch (err) {
-    // console.log(err);
     errorAlert();
   }
 };
@@ -78,7 +74,6 @@ const fetchCoords = async (loc) => {
       return res.data.results[0].locations[0].latLng;
     }
   } catch (err) {
-    // console.log(err);
     errorAlert();
   }
 };

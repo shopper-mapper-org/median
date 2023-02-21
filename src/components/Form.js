@@ -84,10 +84,8 @@ const Form = () => {
     if (!autoCoords) {
       // we need to get the user coordinates
       const getCoords = async () => {
-        console.log("getting coords for: ", locationInput);
         setLoadAPI(true);
         const fetchedCoords = await fetchCoords(locationInput);
-        console.log(fetchedCoords);
         if (fetchedCoords) {
           setUserCoordinates([fetchedCoords.lat, fetchedCoords.lng]);
           const fetchedResults = await fetchResults(queryInput, [fetchedCoords.lat, fetchedCoords.lng], rangeValues[0]);
@@ -184,7 +182,7 @@ const Form = () => {
           </div>
           <div className="query-container">
             <label htmlFor="query">
-              Search for an Attraction <span>(e.g. Museum, Restaurant, etc.)</span>
+              Search for a Category <span>(e.g. Museum, Restaurant, etc.)</span>
             </label>
             <input
               type="text"
@@ -196,14 +194,12 @@ const Form = () => {
             ></input>
           </div>
           <div className="range-input-container">
-            <div className="container">
-              <label htmlFor="range-input">Set Search Range</label>
-              <RangeInput
-                id="range-input"
-                rangeValues={rangeValues}
-                setRangeValues={setRangeValues}
-              />
-            </div>
+            <label htmlFor="range-input">Set Search Range (km)</label>
+            <RangeInput
+              id="range-input"
+              rangeValues={rangeValues}
+              setRangeValues={setRangeValues}
+            />
           </div>
           <div className="button-container">
             <button

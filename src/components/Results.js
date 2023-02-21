@@ -98,7 +98,8 @@ const Results = () => {
         ) : userSubmitted && results.length === 0 ? (
           <section className="results-error">
             <h3>No Results Found</h3>
-            <p>Make sure your search is spelled correctly. Or, try adding more information, like city, province, or postal code.</p>
+            <p>Make sure you're searching for a category (e.g. Museum, Restaurant) and that your search is spelled correctly.</p>
+            <p>Or, try adding more information to your starting point, like city, province, or postal code.</p>
           </section>
         ) : (
           <section className="results-error">

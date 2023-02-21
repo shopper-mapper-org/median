@@ -111,7 +111,7 @@ const Map = () => {
                     isInFaves={isInFaves}
                     faves={faves}
                   />
-                  {isInFaves(result.id) && <div>Fave Count: {faveCount(result)}</div>}
+                  {isInFaves(result.id) && <div>Fave Count: <span className="fav-count">{faveCount(result)}</span></div>}
                 </Popup>
               </Marker>
             );
