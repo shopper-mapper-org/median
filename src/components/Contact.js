@@ -4,14 +4,14 @@ import { motion as m } from "framer-motion"
 
 const Contact = () => {
   return (
-    <m.div 
-      className="contact-only"
+    <m.section 
+      className="container"
       transition={{ duration: 1.2 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <section className="container">
+      <section className="about-contact-container">
         <section className="about-team">
           <h2>THE SHOPPER MAPPER TEAM</h2>
           <div className="team-container">
@@ -129,7 +129,7 @@ const Contact = () => {
           </div>
         </section>
       </section>
-    </m.div>
+    </m.section>
   );
 };
 
