@@ -1,0 +1,37 @@
+@use "variables" as *;
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  bottom: 0;
+  background-color: $n-f-color;
+  margin-top: 5vh;
+  height: 10vh;
+  a {
+    text-decoration: none;
+    color: $coral-pink;
+    transition: 0.2s ease-in-out;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+
+    &:hover,
+    &:focus {
+      color: $light-green;
+    }
+  }
+
+  @media (max-width: $mq-big-mobile) {
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}

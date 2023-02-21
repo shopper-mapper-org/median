@@ -1,0 +1,26 @@
+@use 'variables' as *;
+
+.error-page-view{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 55vh;
+    
+    .return-link{
+        display: flex;
+        flex-direction: column;
+
+        a{
+            color: $coral-pink;
+            text-decoration: none;
+            transition: 0.2s ease-in-out;
+            
+            &:hover,
+            &:focus{
+                color: $light-green;
+            }
+        }
+    }
+}

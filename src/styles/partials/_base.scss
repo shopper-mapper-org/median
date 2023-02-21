@@ -1,0 +1,25 @@
+@use 'variables' as *;
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  // @media (max-width: $mq-medium) {
+  //   width: 85%;
+  // }
+
+  // @media (max-width: $mq-small) {
+  //   width: 90%;
+  // }
+}
+
+body{
+  background-color: $bg-color;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  appearance: none;
+  color: $black;
+}

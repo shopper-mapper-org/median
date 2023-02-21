@@ -1,0 +1,80 @@
+// Map Legend Partial
+
+@use './variables' as *;
+
+.legend-container{
+  background-color: $bg-color;
+  background: rgba($light-green, 0.1);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: 0 4px 30px rgba($black, 0.2);
+  backdrop-filter: blur(5px);
+  border: 5px solid rgba($light-green, 0.8);
+  width: 100%;
+  height: auto;
+  margin: 0px auto 0px auto;
+  padding-top: 5px;
+
+  h2,
+  p{
+      margin: 0px;
+  }
+
+  h2{
+      text-align: center;
+  }
+  
+  .info-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
+
+      @media (max-width: $mq-mobile) {
+          flex-wrap: nowrap;
+          flex-direction: column;
+          width: 100%;
+      }
+  }
+
+  .info{
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 0.7rem;
+      margin: 2px;
+      border: 2px solid $light-green;
+      border-radius: 5px;
+      padding-right: 5px;
+
+      @media (max-width: $mq-mobile) {
+          width: 60%;
+          gap: 5%;
+      }
+  }
+
+
+  .icon-container{
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  img{
+      width: 20px;
+      height: auto;
+  }
+  
+  svg{
+      width: 20px;
+  }
+
+  rect{
+      width: 100%;
+      color: $red;
+  }
+}

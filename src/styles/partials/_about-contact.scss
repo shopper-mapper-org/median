@@ -1,0 +1,104 @@
+@use 'variables' as *;
+
+.about,
+.about-team {
+  padding-bottom: 30px;
+
+  h2 {
+    font-size: 2rem;
+    margin: 40px 0;
+    text-align: center;
+  }
+}
+
+.team-container {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  gap: 50px;
+
+  @media (max-width: $mq-small) {
+    gap: 20px;
+  }
+
+  @media (max-width: $mq-big-mobile) {
+    gap: 12px;
+  }
+}
+
+.team-member {
+  background: rgba($white, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba($black, 0.2);
+  backdrop-filter: blur(5px);
+  border: 5px solid rgba($light-green, 0.8);
+  padding: 0 15px 10px 15px;
+
+  @media (max-width: $mq-small) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  @media (max-width: $mq-mobile) {
+    padding: 5px;
+    padding-top: 0px;
+  }
+}
+
+.team-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 2rem;
+
+  a {
+    text-decoration: none;
+    text-shadow: 0px 0px 5px $black;
+    color: $white;
+    transition: 0.2s ease-in-out;
+
+    :hover,
+    :focus {
+      color: rgba($light-green, 0.8);
+      text-shadow: 0px 0px 20px $aqua-blue;
+    }
+  }
+
+  a p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.5rem;
+  }
+
+  @media (max-width: $mq-small) {
+    gap: 10px;
+  }
+}
+
+.contact-only,
+.about {
+  min-height: 53.4vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.about{
+  padding-bottom: 0;
+
+  p {
+    letter-spacing: 2px;
+    line-height: 1.5;
+    width: 90%;
+    margin: 0 auto;
+
+    @media (max-width: $mq-big-mobile) {
+      width: 100%;
+    }
+  }
+}
