@@ -69,7 +69,7 @@ class RangeInput extends React.Component {
             style={{ marginTop: "30px" }}
             id="output"
           >
-            {rangeValues[0].toFixed(1)}
+            {`${rangeValues[0].toFixed(1)} km`}
           </output>
         </div>
       </div>

@@ -194,7 +194,7 @@ const Form = () => {
             ></input>
           </div>
           <div className="range-input-container">
-            <label htmlFor="range-input">Set Search Range (km)</label>
+            <label htmlFor="range-input">Set Search Range</label>
             <RangeInput
               id="range-input"
               rangeValues={rangeValues}
