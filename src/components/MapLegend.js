@@ -6,7 +6,6 @@ const MapLegend = () => {
 
   return(
     <div className="legend-container">
-      {/* <h2>Map Legend</h2> */}
       <div className="info-container">
         <div className="info">
           <p>Location</p>
