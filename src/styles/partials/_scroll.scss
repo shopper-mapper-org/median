@@ -2,27 +2,47 @@
 
 @use 'variables' as *;
 
-.scroll-up-button{
+.scroll-button{
     position: fixed;
-    bottom: 120px;
+    bottom: 30px;
     right: 30px;
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 35px;
+    padding: 0;
+    border-radius: 5px;
+    border: none;
+    background: $coral-pink;
     transition: 0.2s ease-in-out;
-    color: $light-green;
-    z-index: 10;
+    z-index: 1000;
 
-    @media (max-width: $mq-medium){
-        right: 5px;
+    &:hover,
+    &:focus {
+        background-color: rgba($light-green, 0.5);
+    }
+    
+    @media (max-width: $mq-ipad){
+        right: 20px;
     }
 
     @media (max-width: $mq-small){
-        right: 2px;
-        width: 35px;
+        right: 10px;
     }
 
-    &:hover,
-    &:focus{
-        color: rgba($light-green, 0.7);
+    @media (max-width: $mq-big-mobile){
+        right: 5px;
+        width: 30px;
+        height: 40px;
     }
+
+    .scroll-up-icon{
+        width: 35px;
+        height: 50px;
+        color: $light-green;
+
+        @media (max-width: $mq-big-mobile) {
+            width: 30px;
+            height: 40px;
+        }
+    }
+
 }

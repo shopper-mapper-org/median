@@ -12,14 +12,19 @@ footer {
     text-align: center;
   }
   background-color: $n-f-color;
-  height: 100px;
+  margin-top: 5vh;
+  height: 10vh;
+
+  .container{
+    text-align: center;
+  }
+  
   a {
     text-decoration: none;
     color: $coral-pink;
     transition: 0.2s ease-in-out;
     margin-top: 10px;
-    display: flex;
-    justify-content: center;
+    display: inline-block;
 
     &:hover,
     &:focus {

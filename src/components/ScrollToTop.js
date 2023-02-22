@@ -5,13 +5,7 @@ const ScrollToTop = () => {
 
     const [toTop, setToTop] = useState(false);
 
-    const scrollUp = () => {
-        window.scrollTo({
-            top: 0,
-            behaviour: "smooth"
-        })
-    };
-
+    
     useEffect(() => {
         window.addEventListener("scroll", () => {
             if(window.scrollY > 80) {
@@ -21,16 +15,26 @@ const ScrollToTop = () => {
             }
         })
     }, []);
-
+    
+    const scrollUp = () => {
+        window.scrollTo({
+            top: 0,
+        })
+    };
+    
     return (
         <div className="scroll-component">
             {toTop && (
-                <BsFillFileArrowUpFill
+                <button 
+                    className="scroll-button" 
                     title="Scroll to Top"
                     onClick={scrollUp}
-                    className="scroll-up-button"
-                    aria-label="scroll to top button"
-                />
+                >
+                    <BsFillFileArrowUpFill
+                        className="scroll-up-icon"
+                        aria-label="scroll to top button"
+                    />
+                </button>
             )}
         </div>
     )
