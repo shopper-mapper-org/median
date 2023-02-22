@@ -64,7 +64,7 @@ const Results = () => {
           <select
             name="results-select"
             id="results-select"
-            multiple
+            // multiple
             defaultValue={highlightID}
             onChange={handleSelect}
           >
