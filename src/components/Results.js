@@ -2,10 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { setHighlights } from "../utils/services";
 import { AppContext } from "./context/AppContext";
 
+// mobile screen width
+const MOB_WIDTH = 850;
+
 const Results = () => {
   const { results, userSubmitted, highlight, setHighlight, faves, showFaves, setShowFaves } = useContext(AppContext);
   // use ID value of the results array to determine highlighted result & keep it in state
   const [highlightID, setHighlightID] = useState([]);
+  const isMobileWidth = (window.innerWidth < MOB_WIDTH);
 
   // whenever we change the highlighted selection, we update results so it links to Map
   useEffect(() => {
@@ -60,8 +64,8 @@ const Results = () => {
           <select
             name="results-select"
             id="results-select"
-            multiple
-            defaultValue={highlightID}
+            multiple={(isMobileWidth) ? false: true}
+            defaultValue={(isMobileWidth) ? null: highlightID}
             onChange={handleSelect}
           >
             {faves.map((fave) => {
@@ -79,8 +83,8 @@ const Results = () => {
           <select
             name="results-select"
             id="results-select"
-            multiple
-            defaultValue={highlightID}
+            multiple={(isMobileWidth) ? false : true}
+            defaultValue={(isMobileWidth) ? null : highlightID}
             onChange={handleSelect}
           >
             {results.map((result) => {
