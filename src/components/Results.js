@@ -56,6 +56,10 @@ const Results = () => {
         <h2>Results</h2>
       </label>
       <div className="results">
+        <optgroup
+          disabled
+          hidden
+        ></optgroup>
         {showFaves && faves.length > 0 ? (
           <select
             name="results-select"
