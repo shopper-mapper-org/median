@@ -8,6 +8,7 @@
     font-size: 2rem;
     margin: 40px 0;
     text-align: center;
+    text-transform: uppercase;
   }
 }
 
@@ -18,7 +19,9 @@
   align-items: stretch;
   gap: 50px;
 
-  @media (max-width: $mq-small) {
+  @media (max-width: $mq-ipad) {
+    flex-direction: column;
+    align-items: center;
     gap: 20px;
   }
 
@@ -79,26 +82,112 @@
   }
 }
 
-.contact-only,
+.about-contact-container,
 .about {
-  min-height: 53.4vh;
-  text-align: center;
+  min-height: 57vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 .about{
   padding-bottom: 0;
 
+  h3 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.8rem;
+  }
+
   p {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     line-height: 1.5;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
+    padding-bottom: 20px;
 
     @media (max-width: $mq-big-mobile) {
       width: 100%;
+    }
+  }
+
+  .legend-icons {
+    width: 70%;
+    margin: 20px auto;
+    background-color: $bg-color;
+    background: rgba($light-green, 0.1);
+    border: 5px solid rgba($light-green, 0.8);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+
+    .info {
+      border-top: 1px solid rgba($light-green, 0.8);
+      border-bottom: 1px solid rgba($light-green, 0.8);
+      padding-top: 10px;
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .icon-container {
+        flex-basis: 10%;
+        text-align: center;
+
+        rect {
+          width: 100%;
+          color: $red;
+        }
+      }
+
+      p {
+        flex-basis: 20%;
+        padding-left: 5px;
+      }
+
+      span {
+        padding-left: 20px;
+        flex-basis: 70%;
+      }
+    }
+
+    @media (max-width: $mq-medium) {
+      width: 80%;
+    }
+
+    @media (max-width: $mq-ipad) {
+      width: 90%;
+    }
+
+    @media (max-width: $mq-small) {
+      width: 100%;
+
+      .icon-container {
+        transform: scale(0.9);
+      }
+    }
+
+    @media (max-width: $mq-big-mobile) {
+      p {
+        font-size: 0.9rem;
+      }
+
+      span {
+        font-size: 0.9rem;
+        padding-left: 10px;
+      }
+
+      .icon-container {
+        transform: scale(0.75);
+      }
+    }
+
+    @media (max-width: $mq-mobile) {
+      .icon-container {
+        transform: scale(0.6);
+      }
     }
   }
 }

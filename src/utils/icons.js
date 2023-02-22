@@ -26,7 +26,7 @@ const highlightIcon = new Icon({
 });
 
 const middleHighlight = new Icon({
-  iconUrl: "https://assets.mapquestapi.com/icon/v2/marker-md-5BC5FF-FF9D7F-M.png",
+  iconUrl: "https://assets.mapquestapi.com/icon/v2/circle-lg-5BC5FF-FF9D7F-M.png",
   iconSize: [35, 35],
 });
 
