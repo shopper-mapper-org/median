@@ -11,7 +11,7 @@ import DirectionsButton from "./DirectionsButton";
 import MapLegend from "./MapLegend";
 
 const Map = () => {
-  const { userCoordinates, results, faves, highlight, showFaves, setShowFaves, route, showRoute, setShowRoute, destination, setDestination } = useContext(AppContext);
+  const { userCoordinates, results, faves, highlight, showFaves, setShowFaves, route, showRoute, setShowRoute, destination, setDestination, isSelected, setCurrentSelection } = useContext(AppContext);
 
   // define useRefs to release focus on button clicks
   const backResultsRef = useRef(null);
@@ -33,9 +33,9 @@ const Map = () => {
     return res;
   };
 
-  const isHighlighted = (result) => {
-    return Array.prototype.includes.call(highlight, result);
-  };
+  // const isHighlighted = (result) => {
+  //   return Array.prototype.includes.call(highlight, result);
+  // };
 
   return (
     <div className="map-view">
@@ -68,7 +68,7 @@ const Map = () => {
               <Marker
                 key={index}
                 position={faveCoordinates}
-                icon={isHighlighted(fave) ? faveHighlight : faveIcon}
+                icon={isSelected(fave) ? faveHighlight : faveIcon}
               >
                 <Popup>
                   <div>
@@ -95,7 +95,12 @@ const Map = () => {
               <Marker
                 key={index}
                 position={resultCoordinates}
-                icon={result.isMiddle && isHighlighted(result) ? middleHighlight : result.isMiddle ? middleIcon : isHighlighted(result) ? highlightIcon : isInFaves(result.id) ? faveIcon : resultIcon}
+                icon={result.isMiddle && isSelected(result) ? middleHighlight : result.isMiddle ? middleIcon : isSelected(result) ? highlightIcon : isInFaves(result.id) ? faveIcon : resultIcon}
+                eventHandlers={{
+                  click: () => {
+                    setCurrentSelection(result);
+                  },
+                }}
               >
                 <Popup>
                   <div>
