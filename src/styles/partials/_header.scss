@@ -52,6 +52,12 @@ header {
   a {
     text-decoration: none;
     color: inherit;
+    transition: 0.2s ease-in-out;
+    
+      &:hover,
+      &:focus {
+        color: $coral-pink;
+      }
 
     :visited {
       text-decoration: none;
