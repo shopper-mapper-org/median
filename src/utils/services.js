@@ -1,5 +1,4 @@
 import axios from "axios";
-import Swal from "sweetalert2";
 import { errorAlert } from "./alerts";
 
 const fetchResults = async (query, coordinates, range = 10000) => {
@@ -44,11 +43,9 @@ const setMiddle = (dataArray) => {
 
   // if we have an odd length array...
   if (dataArray.length > 0 && dataArray.length % 2) {
-
     // we have 1 value for the middle
     dataArray[curIndex].isMiddle = true;
   } else if (dataArray.length > 0) {
-
     // otherwise, we have an even length array & we have 2 values for the middle
     dataArray[curIndex].isMiddle = true;
     dataArray[curIndex + 1].isMiddle = true;
