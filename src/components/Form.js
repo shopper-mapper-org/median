@@ -5,11 +5,10 @@ import { AppContext } from "./context/AppContext";
 import RangeInput from "./RangeInput";
 
 const Form = () => {
-  const { setUserCoordinates, setResults, userCoordinates, setUserSubmitted, setLoadAPI } = useContext(AppContext);
+  const { setUserCoordinates, setResults, userCoordinates, setUserSubmitted, setLoadAPI, rangeValues, setRangeValues } = useContext(AppContext);
 
   const [queryInput, setQueryInput] = useState("");
   const [locationInput, setLocationInput] = useState("");
-  const [rangeValues, setRangeValues] = useState([10]);
 
   const [psLocation, setPsLocation] = useState(null);
   const [psQuery, setPsQuery] = useState(null);

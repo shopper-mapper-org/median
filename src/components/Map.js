@@ -68,11 +68,7 @@ const Map = () => {
               <Marker
                 key={index}
                 position={faveCoordinates}
-                icon={
-                  isHighlighted(fave)
-                    ? faveHighlight
-                    : faveIcon
-                }
+                icon={isHighlighted(fave) ? faveHighlight : faveIcon}
               >
                 <Popup>
                   <div>
@@ -111,7 +107,11 @@ const Map = () => {
                     isInFaves={isInFaves}
                     faves={faves}
                   />
-                  {isInFaves(result.id) && <div>Fave Count: <span className="fav-count">{faveCount(result)}</span></div>}
+                  {isInFaves(result.id) && (
+                    <div>
+                      Fave Count: <span className="fav-count">{faveCount(result)}</span>
+                    </div>
+                  )}
                 </Popup>
               </Marker>
             );
@@ -134,7 +134,6 @@ const Map = () => {
           </>
         )}
         {highlight && highlight[0] ? <SetView coords={[highlight[0].place.geometry.coordinates[1], highlight[0].place.geometry.coordinates[0]]} /> : <SetView coords={userCoordinates} />}
-        {/* <SetView coords={userCoordinates} /> */}
       </MapContainer>
       <label className="fav-tab">
         <input

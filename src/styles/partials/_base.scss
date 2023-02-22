@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use "variables" as *;
 
 .container {
   width: 80%;
@@ -10,7 +10,7 @@ html{
   scroll-behavior: smooth;
 }
 
-body{
+body {
   background-color: $bg-color;
 }
 
@@ -18,4 +18,15 @@ input[type="checkbox"] {
   cursor: pointer;
   appearance: none;
   color: $black;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+  .main {
+    flex-grow: 1;
+    margin-block: 30px;
+  }
 }

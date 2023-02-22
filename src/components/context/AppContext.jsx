@@ -13,6 +13,7 @@ const ContextApp = ({ children }) => {
   const [route, setRoute] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
   const [destination, setDestination] = useState(null);
+  const [rangeValues, setRangeValues] = useState([10]);
 
   return (
     <AppContext.Provider
@@ -37,6 +38,8 @@ const ContextApp = ({ children }) => {
         setShowRoute,
         destination,
         setDestination,
+        rangeValues,
+        setRangeValues,
       }}
     >
       {children}

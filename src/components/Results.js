@@ -53,7 +53,7 @@ const Results = () => {
   return (
     <div className="results-view">
       <label htmlFor="result-select">
-        <h2>Results</h2>
+        <h2>{showFaves && faves.length > 0 ? "Favourites": "Results"}</h2>
       </label>
       <div className="results">
         {showFaves && faves.length > 0 ? (
