@@ -5,43 +5,42 @@
 .scroll-button {
   position: fixed;
   bottom: 30px;
-  right: 30px;
-  height: 50px;
-  width: 35px;
+  right: 100px;
+  height: 130px;
+  width: 100px;
   padding: 0;
-  border-radius: 5px;
-  border: 2px solid black;
-  background-color: rgba($light-green, 0.5);
+  border-radius: 16px;
+  border: 1px solid $black;
+  background-color: rgba($light-green, 0.8);
   transition: 0.2s ease-in-out;
   z-index: 1000;
 
   &:hover,
   &:focus {
-    background-color: rgba($light-green, 0.2);
+    background-color: rgba($light-green, 0.8);
   }
 
   @media (max-width: $mq-ipad) {
-    right: 20px;
+    right: 40px;
   }
 
   @media (max-width: $mq-small) {
-    right: 10px;
+    right: 20px;
   }
 
   @media (max-width: $mq-big-mobile) {
-    right: 5px;
-    width: 30px;
-    height: 40px;
+    right: 10px;
   }
 
   .scroll-up-icon {
-    width: 35px;
-    height: 50px;
-    color: $light-green;
+    margin-left: -6px;
+    width: 110px;
+    height: 130px;
+    color: rgba($black, 0.6);
 
-    @media (max-width: $mq-big-mobile) {
-      width: 30px;
-      height: 40px;
+    &:hover,
+    &:focus {
+      color: rgba($black, 0.8);
     }
   }
 }
