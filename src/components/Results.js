@@ -1,21 +1,20 @@
-import React, { useEffect, useContext } from "react";
-import { setHighlights } from "../utils/services";
+import React, { useContext } from "react";
 import { AppContext } from "./context/AppContext";
 
 const Results = () => {
-  const { results, userSubmitted, highlight, faves, showFaves, setShowFaves, setCurrentSelection, isSelected } = useContext(AppContext);
+  const { results, userSubmitted, faves, showFaves, setShowFaves, setCurrentSelection, isSelected } = useContext(AppContext);
   // use ID value of the results array to determine highlighted result & keep it in state
   // const [highlightID, setHighlightID] = useState([]);
 
   // whenever we change the highlighted selection, we update results so it links to Map
-  useEffect(() => {
-    if (showFaves) {
-      setHighlights(faves, highlight);
-    } else {
-      setHighlights(results, highlight);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [highlight]);
+  // useEffect(() => {
+  //   if (showFaves) {
+  //     setHighlights(faves, highlight);
+  //   } else {
+  //     setHighlights(results, highlight);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [highlight]);
 
   // handle the user making selections in our select box
   // const handleSelect = (event) => {
