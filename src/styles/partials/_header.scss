@@ -50,13 +50,14 @@ header {
   }
 
   a {
+    display: inline-block;
     text-decoration: none;
     color: inherit;
     transition: 0.2s ease-in-out;
     
       &:hover,
       &:focus {
-        color: $bg-color;
+        color: rgba($black, 0.6);
       }
 
     :visited {
