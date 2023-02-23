@@ -83,21 +83,21 @@
     color: $aqua-blue;
   }
 
-  button {
-    background: none;
-    border: none;
-    transition: 0.2s ease-in-out;
-  }
+    button{
+        background: none;
+        border: none;
+    }
+    
+    button:hover .close,
+    button:focus .close,
+    button:hover .hamburger,
+    button:focus .hamburger{
+        color: $coral-pink;
+        transition: 0.2s ease-in-out;
 
-  button:hover .close,
-  button:focus .close,
-  button:hover .hamburger,
-  button:focus .hamburger {
-    color: $coral-pink;
-    .hamburger,
-    .close {
-      font-size: 2rem;
-      color: $aqua-blue;
+        i{
+            transition: $coral-pink;
+        }
     }
   }
 }
