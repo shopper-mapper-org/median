@@ -3,51 +3,6 @@ import { AppContext } from "./context/AppContext";
 
 const Results = () => {
   const { results, userSubmitted, faves, showFaves, setShowFaves, setCurrentSelection, isSelected } = useContext(AppContext);
-  // use ID value of the results array to determine highlighted result & keep it in state
-  // const [highlightID, setHighlightID] = useState([]);
-
-  // whenever we change the highlighted selection, we update results so it links to Map
-  // useEffect(() => {
-  //   if (showFaves) {
-  //     setHighlights(faves, highlight);
-  //   } else {
-  //     setHighlights(results, highlight);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [highlight]);
-
-  // handle the user making selections in our select box
-  // const handleSelect = (event) => {
-  //   // set up empty array for highlight IDs and highlight results
-  //   const curHighlightID = [];
-  //   const curHighlight = [];
-
-  //   // loop through selected options
-  //   const curOptions = Array.from(event.target.selectedOptions);
-  //   curOptions.forEach((option) => {
-  //     // push the ID into our highlighted IDs array
-  //     curHighlightID.push(option.value);
-
-  //     // match the selected option to our results and push it into our highlighted results
-  //     if (showFaves && faves.length > 0) {
-  //       faves.forEach((fave) => {
-  //         if (fave.id === option.value) {
-  //           curHighlight.push(fave);
-  //         }
-  //       });
-  //     } else {
-  //       results.forEach((result) => {
-  //         if (result.id === option.value) {
-  //           curHighlight.push(result);
-  //         }
-  //       });
-  //     }
-  //   });
-
-  //   // set our state
-  //   setHighlightID(curHighlightID);
-  //   setHighlight(curHighlight);
-  // };
 
   const handleResultClick = (obj) => {
     setCurrentSelection(obj);

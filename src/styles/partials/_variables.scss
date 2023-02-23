@@ -1,7 +1,7 @@
 // colour variables
-$light-green: #C4E39C;
-$aqua-blue: #5BC5FF;
-$coral-pink: #FF9D7F;
+$light-green: #c4e39c;
+$aqua-blue: #5bc5ff;
+$coral-pink: #ff9d7f;
 $white: #ffffff;
 $black: #000000;
 $red: #ff0000;
@@ -9,14 +9,14 @@ $bg-color: #787c8b;
 $n-f-color: #454545;
 
 // import Google fonts
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Lato:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Lato:wght@400;700&display=swap");
 
 // Main fonts
-$header-font: 'Cormorant Garamond', serif;
+$header-font: "Cormorant Garamond", serif;
 $body-font: Lato, sans-serif;
 
 // URL for map icons
-$middle-icon-url: 'https://assets.mapquestapi.com/icon/v2/circle-sm-5BC5FF-M.png';
+$middle-icon-url: "https://assets.mapquestapi.com/icon/v2/circle-sm-5BC5FF-M.png";
 
 // breakpoints
 $mq-medium: 1100px;

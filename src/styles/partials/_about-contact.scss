@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use "variables" as *;
 
 .about,
 .about-team {
@@ -90,7 +90,7 @@
   justify-content: flex-start;
 }
 
-.about{
+.about {
   padding-bottom: 0;
 
   h3 {

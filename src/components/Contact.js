@@ -1,10 +1,10 @@
 import React from "react";
 import { FaEnvelope, FaGithub, FaLinkedin, FaPortrait } from "react-icons/fa";
-import { motion as m } from "framer-motion"
+import { motion as m } from "framer-motion";
 
 const Contact = () => {
   return (
-    <m.section 
+    <m.section
       className="container"
       transition={{ duration: 1.2 }}
       initial={{ opacity: 0 }}
