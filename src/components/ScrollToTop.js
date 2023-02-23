@@ -2,38 +2,40 @@ import React, { useEffect, useState } from "react";
 import { BsFillFileArrowUpFill } from "react-icons/bs";
 
 const ScrollToTop = () => {
+  const [toTop, setToTop] = useState(false);
 
-    const [toTop, setToTop] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 80) {
+        setToTop(true);
+      } else {
+        setToTop(false);
+      }
+    });
+  }, []);
 
-    const scrollUp = () => {
-        window.scrollTo({
-            top: 0,
-            behaviour: "smooth"
-        })
-    };
+  const scrollUp = () => {
+    window.scrollTo({
+      top: 0,
+    });
+  };
 
-    useEffect(() => {
-        window.addEventListener("scroll", () => {
-            if(window.scrollY > 80) {
-                setToTop(true);
-            } else {
-                setToTop(false);
-            }
-        })
-    }, []);
-
-    return (
-        <div className="scroll-component">
-            {toTop && (
-                <BsFillFileArrowUpFill
-                    title="Scroll to Top"
-                    onClick={scrollUp}
-                    className="scroll-up-button"
-                    aria-label="scroll to top button"
-                />
-            )}
-        </div>
-    )
-}
+  return (
+    <div className="scroll-component">
+      {toTop && (
+        <button
+          className="scroll-button"
+          title="Scroll to Top"
+          onClick={scrollUp}
+        >
+          <BsFillFileArrowUpFill
+            className="scroll-up-icon"
+            aria-label="scroll to top button"
+          />
+        </button>
+      )}
+    </div>
+  );
+};
 
 export default ScrollToTop;

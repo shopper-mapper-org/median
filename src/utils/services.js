@@ -9,7 +9,6 @@ const fetchResults = async (query, coordinates, range = 10) => {
       params: {
         sort: "relevance",
         key: "4cMhcoj1XUqjf6DHUbOG44m4JjBCYrhH",
-        // location: [coordinates[1], coordinates[0]].join(", "),
         circle: [coordinates[1], coordinates[0], range * 1000].join(", "),
         q: query,
         pageSize: 100,

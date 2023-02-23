@@ -1,86 +1,102 @@
 // Nav Bar Partial
 
-@use './variables' as *;
+@use "./variables" as *;
 
 .nav-container {
-    height: 6vh;
-    min-height: 60px;
-    background-color: $n-f-color;
+  height: 6vh;
+  min-height: 60px;
+  background-color: $n-f-color;
 
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-        font-size: 1.3rem;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    font-size: 1.3rem;
+  }
+
+  .page-logo {
+    font-size: 2.5rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: $aqua-blue;
+    text-shadow: 0px 0px 20px $aqua-blue, 0px 0px 10px $coral-pink;
+    text-transform: uppercase;
+    display: flex;
+    transition: 0.2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: $coral-pink;
     }
+  }
 
-    .page-logo {
-        font-size: 2.5rem;
+  ul {
+    display: flex;
+    justify-content: space-between;
+    width: 280px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    @media (max-width: $mq-ipad) {
+      position: fixed;
+      left: -100%;
+      top: 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100vh;
+      transition: 0.5s;
+      z-index: 10000;
+      background: rgba($n-f-color, 0.7);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba($white, 0.3);
     }
+  }
 
+  .nav-list.active {
+    left: 0;
+  }
 
-    a {
-        text-decoration: none;
-        color: $aqua-blue;
-        text-shadow: 0px 0px 20px $aqua-blue, 0px 0px 10px $coral-pink;
-        text-transform: uppercase;
-        display: flex;
+  li {
+    @media (max-width: $mq-ipad) {
+      margin: 30px;
     }
+  }
 
-    ul {
-        display: flex;
-        justify-content: space-between;
-        width: 280px;
-        padding: 0;
-        margin: 0;
-        list-style: none;
+  .menu {
+    z-index: 100000;
+    display: none;
 
-        @media (max-width: $mq-ipad) {
-            position: fixed;
-            left: -100%;
-            top: 0;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100vh;
-            transition: 0.5s;
-            z-index: 10000;
-            background: rgba($n-f-color, 0.7);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba($white, 0.3);
-        }
+    @media (max-width: $mq-ipad) {
+      display: flex;
     }
+  }
 
-    .nav-list.active {
-        left: 0;
+  .hamburger,
+  .close {
+    font-size: 2rem;
+    color: $aqua-blue;
+  }
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  button:hover .close,
+  button:focus .close,
+  button:hover .hamburger,
+  button:focus .hamburger {
+    color: $coral-pink;
+    transition: 0.2s ease-in-out;
+
+    i {
+      transition: $coral-pink;
     }
-
-    li {
-        @media (max-width: $mq-ipad) {
-            margin: 30px;
-        }
-    }
-
-    .menu {
-        z-index: 100000;
-        display: none;
-
-        @media (max-width: $mq-ipad) {
-            display: flex;
-        }
-    }
-
-    .hamburger,
-    .close {
-        font-size: 2rem;
-        color: $aqua-blue;
-    }
-
-    .close{
-        position: fixed;
-        top: 30px;
-        right: 35px;
-    }
+  }
 }

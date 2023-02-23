@@ -26,13 +26,13 @@ const highlightIcon = new Icon({
 });
 
 const middleHighlight = new Icon({
-  iconUrl: "https://assets.mapquestapi.com/icon/v2/marker-md-5BC5FF-FF9D7F-M.png",
+  iconUrl: "https://assets.mapquestapi.com/icon/v2/circle-lg-5BC5FF-FF9D7F-M.png",
   iconSize: [35, 35],
 });
 
-const faveHighlight = new Icon ({
+const faveHighlight = new Icon({
   iconUrl: "https://assets.mapquestapi.com/icon/v2/circle-lg-5BC5FF-FF9D7F-F.png",
-  iconSize: [35, 35],  
-})
+  iconSize: [35, 35],
+});
 
 export { locationIcon, resultIcon, middleIcon, faveIcon, highlightIcon, middleHighlight, faveHighlight };

@@ -1,28 +1,47 @@
 // Scroll Button Partial
 
-@use 'variables' as *;
+@use "variables" as *;
 
-.scroll-up-button{
-    position: fixed;
-    bottom: 120px;
-    right: 30px;
-    height: 60px;
-    width: 60px;
-    transition: 0.2s ease-in-out;
-    color: $light-green;
-    z-index: 10;
+.scroll-button {
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  height: 90px;
+  aspect-ratio: 3/4;
+  padding: 2px;
+  border-radius: 16px;
+  border: 1px solid rgba($black, 0.6);
+  box-shadow: -1px 1px 5px rgba($black, 0.6);
+  background-color: rgba($light-green, 0.8);
+  transition: 0.2s ease-in-out;
+  z-index: 1000;
+  cursor: pointer;
 
-    @media (max-width: $mq-medium){
-        right: 5px;
-    }
+  &:hover,
+  &:focus {
+    background-color: rgba($light-green, 0.8);
+  }
 
-    @media (max-width: $mq-small){
-        right: 2px;
-        width: 35px;
-    }
+  @media (max-width: $mq-ipad) {
+    right: 40px;
+  }
+
+  @media (max-width: $mq-small) {
+    right: 20px;
+  }
+
+  @media (max-width: $mq-big-mobile) {
+    right: 10px;
+  }
+
+  .scroll-up-icon {
+    width: 100%;
+    height: 100%;
+    color: rgba($black, 0.6);
 
     &:hover,
-    &:focus{
-        color: rgba($light-green, 0.7);
+    &:focus {
+      color: rgba($black, 0.8);
     }
+  }
 }

@@ -13,6 +13,12 @@ const ContextApp = ({ children }) => {
   const [route, setRoute] = useState([]);
   const [showRoute, setShowRoute] = useState(false);
   const [destination, setDestination] = useState(null);
+  const [rangeValues, setRangeValues] = useState([10]);
+  const [currentSelection, setCurrentSelection] = useState(null);
+
+  const isSelected = (item) => {
+    return item === currentSelection;
+  };
 
   return (
     <AppContext.Provider
@@ -37,6 +43,11 @@ const ContextApp = ({ children }) => {
         setShowRoute,
         destination,
         setDestination,
+        rangeValues,
+        setRangeValues,
+        currentSelection,
+        setCurrentSelection,
+        isSelected,
       }}
     >
       {children}

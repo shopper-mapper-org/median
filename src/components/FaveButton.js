@@ -13,17 +13,15 @@ const FaveButton = ({ result, isInFaves, faves }) => {
       const faveDbKey = faves.filter((fave) => fave.id === result.id)[0].key;
       const faveCount = faves.filter((fave) => fave.id === result.id)[0].faves;
       const faveRef = ref(db, "favourites/" + faveDbKey);
-      update(faveRef, { faves: faveCount + 1 })
-        .catch((err) => {
-          errorAlert(err);
-        });
+      update(faveRef, { faves: faveCount + 1 }).catch((err) => {
+        errorAlert(err);
+      });
       // else, add to db and set likes to 1
     } else {
       const newFaveKey = push(favesRef).key;
-      update(favesRef, { [newFaveKey]: { ...result, faves: 1 } })
-        .catch((err) => {
-          errorAlert(err);
-        });
+      update(favesRef, { [newFaveKey]: { ...result, faves: 1 } }).catch((err) => {
+        errorAlert(err);
+      });
     }
   };
   return (
