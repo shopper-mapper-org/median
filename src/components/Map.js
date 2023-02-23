@@ -11,7 +11,7 @@ import DirectionsButton from "./DirectionsButton";
 import MapLegend from "./MapLegend";
 
 const Map = () => {
-  const { userCoordinates, results, faves, highlight, showFaves, setShowFaves, route, showRoute, setShowRoute, destination, setDestination, isSelected, setCurrentSelection } = useContext(AppContext);
+  const { userCoordinates, results, faves, showFaves, setShowFaves, route, showRoute, setShowRoute, destination, setDestination, isSelected, setCurrentSelection } = useContext(AppContext);
 
   // define useRefs to release focus on button clicks
   const backResultsRef = useRef(null);
@@ -32,10 +32,6 @@ const Map = () => {
     const res = faves.some((fave) => fave.id === id);
     return res;
   };
-
-  // const isHighlighted = (result) => {
-  //   return Array.prototype.includes.call(highlight, result);
-  // };
 
   return (
     <div className="map-view">
@@ -138,7 +134,7 @@ const Map = () => {
             </Marker>
           </>
         )}
-        {highlight && highlight[0] ? <SetView coords={[highlight[0].place.geometry.coordinates[1], highlight[0].place.geometry.coordinates[0]]} /> : <SetView coords={userCoordinates} />}
+        <SetView coords={userCoordinates} />
       </MapContainer>
       <label className="fav-tab">
         <input
