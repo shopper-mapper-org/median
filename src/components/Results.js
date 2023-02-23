@@ -18,6 +18,7 @@ const Results = () => {
           <ul
             name="results-select"
             id="results-select"
+            className="results-select"
           >
             {faves.map((fave) => {
               return (
@@ -36,6 +37,7 @@ const Results = () => {
           <ul
             name="results-select"
             id="results-select"
+            className="results-select"
           >
             {results.map((result) => {
               return (
